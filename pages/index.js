@@ -128,7 +128,6 @@ export default function Home() {
                     )
                   })}
                 </div>
-                <p>Transactions are made using Stripe - </p>
               </>
             )}
           </div>
