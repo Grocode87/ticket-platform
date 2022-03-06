@@ -1,10 +1,17 @@
 import { useRouter } from "next/router";
+import { useContext } from "react";
+import { CartDispatchContext, setCart } from "../context/cart";
 
-const TierListing = ({ name, price, price_id, avaliable, soldout }) => {
+const TierListing = ({data}) => {
   const router = useRouter();
+  const dispatch = useContext(CartDispatchContext);
+  const { name, price, price_id, active, sold_out } = data
 
   const redirectToCart = () => {
-    router.push({pathname:'/cart', query:{name: name, price: price}}, "/cart")
+    const ticketData = { data };
+    setCart(dispatch, ticketData);
+
+    router.push("/cart")
   }
 
   return (
@@ -14,7 +21,7 @@ const TierListing = ({ name, price, price_id, avaliable, soldout }) => {
         <div>${price / 100}</div>
       </div>
       <div className="whitespace-nowrap">
-        {avaliable ? (
+        {active ? (
           <button onClick={redirectToCart} className={"p-2 rounded-lg shadow-md bg-red-500 text-white "}>
             Buy Now
           </button>

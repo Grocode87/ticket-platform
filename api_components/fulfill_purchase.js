@@ -68,22 +68,20 @@ const sendMail = async (toEmail, pdfData) => {
 };
 
 const fulfillPurchase = async (session) => {
-    console.log(session)
+  console.log(session)
   // Disable guestlist id
 
   // Create ticket id
   const ticket_id = generateRandomCode(12);
 
   // Disable access code in db
-  const accessCode = "HSDGJS"; //TODO: get this from session somehow
+  const accessCode = session.metadata.accessCode; //TODO: get this from session somehow
 
-  let {data, error} = await supabase
+  await supabase
     .from("access_codes")
     .update({ valid: false })
     .match({ code: accessCode });
 
-    console.log(data)
-    console.log(error)
 
   // add ticket id to db
   await supabase
@@ -91,13 +89,11 @@ const fulfillPurchase = async (session) => {
     .insert([
       {
         code: ticket_id,
-        name: "TICKET NAME",
-        customer_name: session.metadata.name || "NO NAME",
+        name: session.metadata.ticketName,
+        customer_name: session.metadata.name || "",
         customer_email: session.customer_details.email,
       },
     ]);
-    console.log(data)
-    console.log(error)
 
   // Create qr code
   generateQRCode(ticket_id)

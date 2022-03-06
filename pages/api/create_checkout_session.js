@@ -10,11 +10,11 @@ export default async function handler(req, res) {
         mode: "payment",
         payment_method_types: ["card"],
         line_items:  [{
-            price: 'price_1KZgSdC5T4V1yXtqk8FtaDAP',
+            price: req.body.priceId,
             quantity: 1,
         }],
-        metadata: {'access_code': "this bitch works"},
-        customer_email: "colin.grob87@gmail.com",
+        metadata: {'accessCode': req.body.accessCode, 'name': req.body.name, 'ticketName': req.body.ticketName},
+        customer_email: req.body.email,
         success_url: `${req.headers.origin}`,
         cancel_url: `${req.headers.origin}`,
       });

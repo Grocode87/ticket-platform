@@ -1,18 +1,19 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import TierListing from "../components/TierListing";
 import styles from "../styles/Home.module.css";
 import axios from 'axios';
+import { CartDispatchContext, setAccessCode } from "../context/cart";
 
 /**
  * FRONTEND TODO TMRW
- * - on home page, retrieve ticket info from db
+ * - on home page, retrieve ticket info from db DONE
  * 
- * - when a buy now is pressed - add ticket and guestlist code to a global cart object
+ * - when a buy now is pressed - add ticket and guestlist code to a global cart object DONE
  * 
- * - on checkout page - Add form validation for name and email
- * - pass email, name, ticket priceID, and guestlist code to checkout session
+ * - on checkout page - Add form validation for name and email DONE
+ * - pass email, name, ticket priceID, and guestlist code to checkout session DONE
  * - when go to checkout is pressed - confirm that the ticket is still avaliable
  * 
  * - add payment success page
@@ -44,8 +45,11 @@ export default function Home() {
   const [codeMsg, setCodeMsg] = useState("");
   const [prices, setPrices] = useState([])
 
+  const dispatch = useContext(CartDispatchContext);
+
+
   useEffect(() => {
-    axios.get("http://localhost:3000/api/get_prices").then(res => {
+    axios.get("/api/get_prices").then(res => {
       console.log(res.data.data)
       setPrices(res.data.data.sort((first, second) => {
         return (first.id > second.id) ? 1 : -1
@@ -60,7 +64,7 @@ export default function Home() {
     if(!code || code.length < 2) {
       return
     }
-    axios.get(`http://localhost:3000/api/check_code?code=` + code)
+    axios.get("/api/check_code?code=" + code)
     .then(res => {
       console.log("checked")
       if(!res.data.valid) {
@@ -69,6 +73,7 @@ export default function Home() {
       } else {
         setCodeMsg("")
         setValidCode(res.data.valid)
+        setAccessCode(dispatch, code)
       }
     })
   }
@@ -120,7 +125,7 @@ export default function Home() {
                 <div className="flex flex-col items-center pt-6">
                   {prices.map(price => {
                     return (
-                      <TierListing key={price.id} name={price.name} price={price.price} avaliable={price.active} soldout={price.sold_out} price_id={price.price_id}/>
+                      <TierListing data={price}/>
                     )
                   })}
                 </div>
