@@ -120,7 +120,7 @@ export default function Home() {
                 <div className="flex flex-col items-center pt-6">
                   {prices.map(price => {
                     return (
-                      <TierListing name={price.name} price={price.price} avaliable={price.active} soldout={price.sold_out} price_id={price.price_id}/>
+                      <TierListing key={price.id} name={price.name} price={price.price} avaliable={price.active} soldout={price.sold_out} price_id={price.price_id}/>
                     )
                   })}
                 </div>
