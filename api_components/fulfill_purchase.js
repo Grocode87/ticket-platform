@@ -69,6 +69,7 @@ const sendMail = async (toEmail, pdfData) => {
 
 const fulfillPurchase = async (session) => {
   console.log(session);
+  console.log("fulfilling purchase")
   // Disable guestlist id
 
   // Create ticket id
@@ -78,7 +79,7 @@ const fulfillPurchase = async (session) => {
   const accessCode = session.metadata.accessCode;
 
   // add ticket id to db
-  await supabase.from("tickets").insert([
+  const {res, error} = await supabase.from("tickets").insert([
     {
       code: ticket_id,
       name: session.metadata.ticketName || "",
@@ -86,6 +87,9 @@ const fulfillPurchase = async (session) => {
       customer_email: session.customer_details.email || "",
     },
   ]);
+
+  console.log(res)
+  console.log(error)
 
   await supabase
     .from("access_codes")
