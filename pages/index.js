@@ -125,7 +125,7 @@ export default function Home() {
                 <div className="flex flex-col items-center pt-6">
                   {prices.map(price => {
                     return (
-                      <TierListing data={price}/>
+                      <TierListing key={price.id} data={price}/>
                     )
                   })}
                 </div>
