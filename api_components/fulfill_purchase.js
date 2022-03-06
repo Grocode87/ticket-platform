@@ -75,7 +75,7 @@ const fulfillPurchase = async (session) => {
   const ticket_id = generateRandomCode(12);
 
   // Disable access code in db
-  const accessCode = session.metadata.accessCode; //TODO: get this from session somehow
+  const accessCode = session.metadata.accessCode;
 
   await supabase
     .from("access_codes")
@@ -89,14 +89,14 @@ const fulfillPurchase = async (session) => {
     .insert([
       {
         code: ticket_id,
-        name: session.metadata.ticketName,
+        name: session.metadata.ticketName || "",
         customer_name: session.metadata.name || "",
-        customer_email: session.customer_details.email,
+        customer_email: session.customer_details.email || "",
       },
     ]);
 
   // Create qr code
-  generateQRCode(ticket_id)
+  //generateQRCode(ticket_id)
 
   // Get receipt
 

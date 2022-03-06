@@ -8,7 +8,7 @@ export default function Home() {
 
 
   const generateCode = () => {
-    axios.get(`http://localhost:3000/api/generate_code`)
+    axios.get(`/api/generate_code`)
     .then(res => {
       setCode(res.data.code)
     })
