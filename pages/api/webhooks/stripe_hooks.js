@@ -21,14 +21,11 @@ import { buffer } from "micro";
 export const config = { api: { bodyParser: false } };
 
 const webhookHandler = async (req, res) => {
-  console.log("GOT HOOK");
-
   const stripe = initStripe(process.env.STRIPE_SECRET_KEY);
   const signature = req.headers["stripe-signature"];
   const signingSecret = process.env.STRIPE_SIGNING_SECRET;
   const reqBuffer = await buffer(req);
 
-  console.log("POST");
   let event;
   try {
     event = stripe.webhooks.constructEvent(reqBuffer, signature, signingSecret);
@@ -37,7 +34,6 @@ const webhookHandler = async (req, res) => {
   }
 
 
-  console.log("NOW CHECKING EVENT TYPE");
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
 
