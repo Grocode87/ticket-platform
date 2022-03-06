@@ -79,6 +79,7 @@ const fulfillPurchase = async (session) => {
   const accessCode = session.metadata.accessCode;
 
   // add ticket id to db
+  console.log("adding ticket")
   const {res, error} = await supabase.from("tickets").insert([
     {
       code: ticket_id,
@@ -90,12 +91,12 @@ const fulfillPurchase = async (session) => {
 
   console.log(res)
   console.log(error)
-
+  console.log("added ticket, disabling access code")
   await supabase
     .from("access_codes")
     .update({ valid: false })
     .match({ code: accessCode });
-
+  consline.log("disabled access code")
   // Create qr code
   //generateQRCode(ticket_id)
 

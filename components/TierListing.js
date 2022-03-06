@@ -15,10 +15,15 @@ const TierListing = ({data}) => {
   }
 
   return (
-    <div className="w-1/2 border rounded-lg shadow-md p-4 my-2 flex justify-between items-center">
-      <div className="pr-4">
-        <div className="font-bold text-xl pb-3">{name}</div>
-        <div>${price / 100}</div>
+    <div className="w-full lg:w-1/2 border rounded-lg shadow-md p-4 my-2 flex justify-between items-center">
+      <div className="pr-4 text-left">
+        <p className="">Koachella</p>
+        <p className="font-bold text-xl pb-3">{name} Ticket</p>
+        {sold_out ? (
+          <p className="text-red-600 font-bold">SOLD OUT</p>
+        ) : (
+          <p className="font-bold">${price / 100}</p>
+        )}
       </div>
       <div className="whitespace-nowrap">
         {active ? (
