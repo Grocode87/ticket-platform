@@ -38,7 +38,7 @@ const generateTicket = async (session, ticket_id) => {
   const doc = new PDFDocument();
 
   //IMAGE
-  doc.image("koachella.jpg", 75, 50, {width: 250});
+  //doc.image("koachella.jpg", 75, 50, {width: 250});
   doc.text("Saturday, March 19th at 8:00PM", 80, 130)
   doc.text("First house on the left", 80, 160)
   doc.text("2880 Westbrook Mall", 80, 180)
@@ -46,7 +46,7 @@ const generateTicket = async (session, ticket_id) => {
   doc.text("Ticket ID: " + ticket_id, 80, 220)
 
   
-  doc.image("phone-icon.jpg", 65, 260, {width: 50});
+  //doc.image("phone-icon.jpg", 65, 260, {width: 50});
   doc.font('Helvetica-Bold').text("Be ready to present this", 120, 270)
   doc.font('Helvetica-Bold').text("ticket at the door for entry", 120, 290)
 
