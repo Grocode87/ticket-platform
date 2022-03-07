@@ -139,33 +139,25 @@ const fulfillPurchase = async (session) => {
   // Create ticket id
   const ticket_id = generateRandomCode(12);
 
-  try {
   // Disable access code in db
   const accessCode = session.metadata.accessCode;
-  supabase
+  await supabase
   .from("access_codes")
   .update({ valid: false })
-  .match({ code: accessCode }).then(({res, error}) => {
-    console.log("then")
-    console.log(error)
-  });
-  console.log("disabled access code")
-  } catch(e) {
-    console.log("an error occured")
-    console.log(e)
-  }
+  .match({ code: accessCode })
+
   // add ticket to db
   console.log("adding ticket")
-  //const newTicket = {
-  //  code: ticket_id,
-  //  name: session.metadata.ticketName || "",
-  //  customer_name: session.metadata.name || "",
-  //  customer_email: session.customer_details.email || "",
-  //}
-  //const {res, error} = await supabase.from("tickets").insert([newTicket]);
+  const newTicket = {
+    code: ticket_id,
+    name: session.metadata.ticketName || "",
+    customer_name: session.metadata.name || "",
+    customer_email: session.customer_details.email || "",
+  }
+  const {res, error} = await supabase.from("tickets").insert([newTicket]);
 
-  //console.log(res)
-  //console.log(error)
+  console.log(res)
+  console.log(error)
   console.log("added ticket")
   
 
@@ -202,7 +194,7 @@ const webhookHandler = async (req, res) => {
     const session = event.data.object;
 
     console.log(session);
-    fulfillPurchase(session);
+    await fulfillPurchase(session);
   }
 
   // Successfully constructed event
