@@ -77,26 +77,27 @@ const fulfillPurchase = async (session) => {
 
   // Disable access code in db
   const accessCode = session.metadata.accessCode;
+  await supabase
+  .from("access_codes")
+  .update({ valid: false })
+  .match({ code: accessCode });
+  console.log("disabled access code")
 
 
+  // add ticket to db
+  console.log("adding ticket")
   const newTicket = {
     code: ticket_id,
     name: session.metadata.ticketName || "",
     customer_name: session.metadata.name || "",
     customer_email: session.customer_details.email || "",
   }
-  // add ticket id to db
-  console.log("adding ticket")
   const {res, error} = await supabase.from("tickets").insert([newTicket]);
 
   console.log(res)
   console.log(error)
-  console.log("added ticket, disabling access code")
-  await supabase
-    .from("access_codes")
-    .update({ valid: false })
-    .match({ code: accessCode });
-  console.log("disabled access code")
+  console.log("added ticket")
+  
   // Create qr code
 
   
