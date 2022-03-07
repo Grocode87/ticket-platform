@@ -21,6 +21,8 @@ import getStream from 'get-stream';
 import generateRandomCode from '../../../utils/generate';
 import { supabase } from "../../../utils/supabaseClient";
 
+import { createClient } from '@supabase/supabase-js'
+
 // Calls an external API to generate a qr code for the given data - returns an image
 const generateQRCode = (data) => {
   const qr = require("qr-image");
@@ -131,6 +133,11 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf) => {
 };
 
 const fulfillPurchase = async (session) => {
+
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+  const supabase = createClient(supabaseUrl, supabaseAnonKey)
   console.log(session);
   console.log("fulfilling purchase")
   // Disable guestlist id
