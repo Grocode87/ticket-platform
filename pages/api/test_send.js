@@ -1,4 +1,5 @@
 import axios from 'axios';
+import fulfillPurchase from '../../api_components/fulfill_purchase';
 
 // Calls an external API to generate a qr code for the given data - returns an image
 const generateQRCode = (data) => {
@@ -10,30 +11,6 @@ const generateQRCode = (data) => {
     return qr_str
 }
 
-const createPdf = async () => {
-    const PDFDocument = require('pdfkit');
-    const { Base64Encode } = require('base64-stream');
-
-    // instantiate the library
-    const doc = new PDFDocument; 
-
-    // pipe to a writable stream which would save the result into the same directory
-    doc.text("Koachella 2022 Ticket")
-    var finalString = ''; // contains the base64 string
-    var stream = doc.pipe(new Base64Encode());
-
-    stream.on('data', function(chunk) {
-        finalString += chunk;
-    });
-    
-    stream.on('end', function() {
-        sendMail("havenmakayla@hotmail.ca", finalString)
-    });
-    
-    doc.image(generateQRCode(""))
-    doc.end();
-
-}
 
 const sendMail = async (toEmail, pdfData) => {
     let nodemailer = require('nodemailer')
@@ -70,7 +47,7 @@ const sendMail = async (toEmail, pdfData) => {
 
 
 async function handler(req, res) {  
-    createPdf()
+    fulfillPurchase()
 }
 
 export default handler

@@ -21,6 +21,7 @@ import { buffer } from "micro";
 export const config = { api: { bodyParser: false } };
 
 const webhookHandler = async (req, res) => {
+  console.log("recieved hook")
   const stripe = initStripe(process.env.STRIPE_SECRET_KEY);
   const signature = req.headers["stripe-signature"];
   const signingSecret = process.env.STRIPE_SIGNING_SECRET;
