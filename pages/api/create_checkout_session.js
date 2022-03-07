@@ -15,8 +15,8 @@ export default async function handler(req, res) {
         }],
         metadata: {'accessCode': req.body.accessCode, 'name': req.body.name, 'ticketName': req.body.ticketName},
         customer_email: req.body.email,
-        success_url: `${req.headers.origin}`,
-        cancel_url: `${req.headers.origin}`,
+        success_url: `${req.headers.origin}/payment/success`,
+        cancel_url: `${req.headers.origin}/payment/cancelled`,
       });
 
       res.status(200).json(session);

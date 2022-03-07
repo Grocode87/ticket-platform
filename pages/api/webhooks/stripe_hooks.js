@@ -124,16 +124,11 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf) => {
     }],
   };
 
-  console.log("sending mail")
   await transporter.sendMail(mailData)
-  console.log("sent mail")
 };
 
 const fulfillPurchase = async (session) => {
   
-  console.log(session);
-  console.log("fulfilling purchase")
-  // Disable guestlist id
 
   // Create ticket id
   const ticket_id = generateRandomCode(12);
@@ -146,21 +141,14 @@ const fulfillPurchase = async (session) => {
   .match({ code: accessCode })
 
   // add ticket to db
-  console.log("adding ticket")
   const newTicket = {
     code: ticket_id,
     name: session.metadata.ticketName || "",
     customer_name: session.metadata.name || "",
     customer_email: session.customer_details.email || "",
   }
-  const {res, error} = await supabase.from("tickets").insert([newTicket]);
-
-  console.log(res)
-  console.log(error)
-  console.log("added ticket")
+  await supabase.from("tickets").insert([newTicket]);
   
-
-
   const ticketPdf = await generateTicket(session, ticket_id)
   const receiptPdf = await generateReciept(session)
   
@@ -175,7 +163,6 @@ const fulfillPurchase = async (session) => {
 export const config = { api: { bodyParser: false } };
 
 const webhookHandler = async (req, res) => {
-  console.log("recieved hook")
   const stripe = initStripe(process.env.STRIPE_SECRET_KEY);
   const signature = req.headers["stripe-signature"];
   const signingSecret = process.env.STRIPE_SIGNING_SECRET;
@@ -188,11 +175,9 @@ const webhookHandler = async (req, res) => {
     return res.status(400).send(`Webhook error: ${error.message}`);
   }
 
-
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
 
-    console.log(session);
     await fulfillPurchase(session);
   }
 
