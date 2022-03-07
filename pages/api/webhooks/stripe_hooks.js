@@ -21,8 +21,6 @@ import getStream from 'get-stream';
 import generateRandomCode from '../../../utils/generate';
 import { supabase } from "../../../utils/supabaseClient";
 
-import { createClient } from '@supabase/supabase-js'
-
 // Calls an external API to generate a qr code for the given data - returns an image
 const generateQRCode = (data) => {
   const qr = require("qr-image");
@@ -133,11 +131,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf) => {
 };
 
 const fulfillPurchase = async (session) => {
-
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-
-  const supabase = createClient(supabaseUrl, supabaseAnonKey)
+  
   console.log(session);
   console.log("fulfilling purchase")
   // Disable guestlist id
@@ -147,24 +141,26 @@ const fulfillPurchase = async (session) => {
 
   // Disable access code in db
   const accessCode = session.metadata.accessCode;
-  await supabase
+  const {res, error} = await supabase
   .from("access_codes")
   .update({ valid: false })
   .match({ code: accessCode });
   console.log("disabled access code")
+  console.log(res)
+  console.log(error)
 
   // add ticket to db
   console.log("adding ticket")
-  const newTicket = {
-    code: ticket_id,
-    name: session.metadata.ticketName || "",
-    customer_name: session.metadata.name || "",
-    customer_email: session.customer_details.email || "",
-  }
-  const {res, error} = await supabase.from("tickets").insert([newTicket]);
+  //const newTicket = {
+  //  code: ticket_id,
+  //  name: session.metadata.ticketName || "",
+  //  customer_name: session.metadata.name || "",
+  //  customer_email: session.customer_details.email || "",
+  //}
+  //const {res, error} = await supabase.from("tickets").insert([newTicket]);
 
-  console.log(res)
-  console.log(error)
+  //console.log(res)
+  //console.log(error)
   console.log("added ticket")
   
 
