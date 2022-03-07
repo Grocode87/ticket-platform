@@ -165,7 +165,7 @@ const fulfillPurchase = async (session) => {
   const ticketPdf = await generateTicket(session, ticket_id)
   const receiptPdf = await generateReciept(session)
   
-  sendMail(session.customer_details.email, ticketPdf, receiptPdf)
+  await sendMail(session.customer_details.email, ticketPdf, receiptPdf)
 
 
 };
