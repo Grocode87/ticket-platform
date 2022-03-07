@@ -45,7 +45,7 @@ const generateTicket = async (session, ticket_id) => {
   
   doc.text("Ticket ID: " + ticket_id, 80, 220)
 
-  
+  //'./public/uploads'
   //doc.image("phone-icon.jpg", 65, 260, {width: 50});
   doc.font('Helvetica-Bold').text("Be ready to present this", 120, 270)
   doc.font('Helvetica-Bold').text("ticket at the door for entry", 120, 290)
@@ -124,10 +124,9 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf) => {
     }],
   };
 
-  transporter.sendMail(mailData, function (err, info) {
-    if (err) console.log(err);
-    else console.log(info);
-  });
+  console.log("sending mail")
+  await transporter.sendMail(mailData)
+  console.log("sent mail")
 };
 
 const fulfillPurchase = async (session) => {
