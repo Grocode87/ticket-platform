@@ -93,7 +93,6 @@ const Home = () => {
     setOnMobile(window.mobileCheck())
   }, [])
 
-  
 
   return (
     <>
