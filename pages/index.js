@@ -42,7 +42,7 @@ import { useRouter } from "next/router";
 const Home = () => {
   const [code, setCode] = useState("");
   const [codeMsg, setCodeMsg] = useState("");
-  const [onMobile, setOnMobile] = useState(false)
+  const [onMobile, setOnMobile] = useState(false);
 
   const dispatch = useContext(CartDispatchContext);
 
@@ -90,9 +90,8 @@ const Home = () => {
       return check;
     };
 
-    setOnMobile(window.mobileCheck())
-  }, [])
-
+    setOnMobile(window.mobileCheck());
+  }, []);
 
   return (
     <>
@@ -107,10 +106,16 @@ const Home = () => {
         autoPlay
         muted
         loop
+        autoPlay={true}
+        loop={true}
+        controls={false}
+        playsInline
+        muted
         className="object-cover w-full h-full absolute -z-10 bg-black blur-md"
-        src={onMobile ? "/videos/background-mobile.mp4" :  "/videos/background.mp4"}
-      >
-      </video>
+        src={
+          onMobile ? "/videos/background-mobile.mp4" : "/videos/background.mp4"
+        }
+      ></video>
       <div className="w-full min-h-screen">
         <div className="m-auto w-full lg:w-5/12 min-h-screen bg-black bg-opacity-50 text-white">
           {/** BASIC INFO*/}
@@ -166,14 +171,22 @@ const Home = () => {
           <div className="px-8 py-8">
             <p className="text-2xl font-bold list">KOACHΣLLA 2022</p>
             <div className="flex space-x-2 pt-2">
-              <a rel="noreferrer" href="https://www.instagram.com/koachellaubc/" target="_blank">
-                <Image src='/images/logo-ig.png'  width={20} height={20}/>
+              <a
+                rel="noreferrer"
+                href="https://www.instagram.com/koachellaubc/"
+                target="_blank"
+              >
+                <Image src="/images/logo-ig.png" width={20} height={20} />
               </a>
               <a target="_blank">
-                <Image src='/images/logo-fb.png' width={20} height={20}/>
+                <Image src="/images/logo-fb.png" width={20} height={20} />
               </a>
-              <a target="_blank" rel="noreferrer" href="https://open.spotify.com/playlist/6ar8k0DtuSOejdYLKLjdWS?si=ZkL7cWpaQQGxc6e1aFUzHA&nd=1&utm_medium=organic&_branch_referrer=H4sIAAAAAAAAA72N3wqCMByFn2ZeampYBBKCWJAQIiF1E7%2B2mdO1jf2B7OlbQa8QnIvD%2Bfg4g7XKbKLIKGlZP4egVMiZmKKt0pI4bHOpqAhQsuwd51eneT58FJQWKKl8Pjj82Vg%2B%2FKQ4zJwZ62sGej0tSuvaIx3JuT7UI%2BlalFaGobS8TPUKdwqaZvfEGY2hOr32xfcMOL8Bnv5yiJJMEE%2FjoKdgnaa51HcQDL8B91YitR0BAAA%3D&product=open&%24full_url=https%3A%2F%2Fopen.spotify.com%2Fplaylist%2F6ar8k0DtuSOejdYLKLjdWS%3Fsi%3DZkL7cWpaQQGxc6e1aFUzHA&feature=organic&_branch_match_id=1029543886602822366">
-                <Image src='/images/logo-spotify.png' width={20} height={20}/>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://open.spotify.com/playlist/6ar8k0DtuSOejdYLKLjdWS?si=ZkL7cWpaQQGxc6e1aFUzHA&nd=1&utm_medium=organic&_branch_referrer=H4sIAAAAAAAAA72N3wqCMByFn2ZeampYBBKCWJAQIiF1E7%2B2mdO1jf2B7OlbQa8QnIvD%2Bfg4g7XKbKLIKGlZP4egVMiZmKKt0pI4bHOpqAhQsuwd51eneT58FJQWKKl8Pjj82Vg%2B%2FKQ4zJwZ62sGej0tSuvaIx3JuT7UI%2BlalFaGobS8TPUKdwqaZvfEGY2hOr32xfcMOL8Bnv5yiJJMEE%2FjoKdgnaa51HcQDL8B91YitR0BAAA%3D&product=open&%24full_url=https%3A%2F%2Fopen.spotify.com%2Fplaylist%2F6ar8k0DtuSOejdYLKLjdWS%3Fsi%3DZkL7cWpaQQGxc6e1aFUzHA&feature=organic&_branch_match_id=1029543886602822366"
+              >
+                <Image src="/images/logo-spotify.png" width={20} height={20} />
               </a>
             </div>
             <p className="pt-3">
