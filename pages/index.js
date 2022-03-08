@@ -43,6 +43,7 @@ const Home = () => {
   const [code, setCode] = useState("");
   const [codeMsg, setCodeMsg] = useState("");
   const [onMobile, setOnMobile] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useContext(CartDispatchContext);
 
@@ -57,19 +58,22 @@ const Home = () => {
 
   const checkValidCode = () => {
     console.log("checking...");
+    setLoading(true)
     if (!code || code.length < 2) {
+      setCodeMsg("Invalid code");
+      setLoading(false)
       return;
     }
     axios.get("/api/check_code?code=" + code).then((res) => {
       console.log("checked");
       if (!res.data.valid) {
         setCodeMsg("Invalid code");
-        console.log("invalid");
+        setLoading(false)
       } else {
         setCodeMsg("");
         setAccessCode(dispatch, code);
         router.push({ pathname: "/tickets", query: { code: code } });
-        router.push;
+        setLoading(false)
       }
     });
   };
@@ -121,8 +125,8 @@ const Home = () => {
           {/** BASIC INFO*/}
           <div className="min-h-screen flex flex-col justify-between">
             {/** TOP */}
-            <div className="text-3xl p-6 pt-20 sm:p-20">
-              <Image src="/images/header-new.png" width={800} height={210} />
+            <div className="text-3xl p-10 pt-20 sm:p-20">
+              <Image src="/images/header-new2.png" width={800} height={270} />
             </div>
 
             {/** BOTTOM */}
@@ -143,7 +147,7 @@ const Home = () => {
                     className="bg-purple-700 w-min px-4 py-2 text-lg rounded-xl mt-3"
                     onClick={checkValidCode}
                   >
-                    SUBMIT
+                    {!loading? "CONTINUE" : "LOADING..."}
                   </button>
                 </div>
               </div>

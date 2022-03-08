@@ -12,27 +12,62 @@ const Cart = ({ query }) => {
   const [email, setEmail] = useState("");
 
   const [formValid, setFormValid] = useState(true);
+  const [errorMsg, setErrorMsg] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const checkFormValid = () => {
-    if (
-      firstName.length >= 2 &&
-      lastName.length >= 2 &&
-      email
+    if (firstName < 2) {
+      setFormValid(false);
+      setErrorMsg("First name must be at least 2 charactors");
+      return false;
+    } else if (lastName.length < 2) {
+      setFormValid(false);
+      setErrorMsg("Last name must be at least 2 charactors");
+      return false;
+    } else if (
+      !email
         .toLowerCase()
         .match(
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         )
     ) {
-      setFormValid(true);
-      return true;
-    } else {
       setFormValid(false);
+      setErrorMsg("Enter a valid email address");
       return false;
+    } else {
+      setFormValid(true);
+      setErrorMsg("");
+      return true;
     }
   };
 
   const redirectToCheckout = async () => {
-    if (checkFormValid()) {
+    // CHECK TO MAKE SURE ACCESS CODE IS STILL VALID + TICKET IS AVALIABLE
+    setLoading(true);
+    let codeValid = await axios.get(
+      "https://koachellaubc.com/api/check_code?code=" + accessCode
+    );
+    
+    let stillValid = true
+    if (codeValid.data?.valid) {
+      console.log("code valid")
+      let res = await axios.get("https://koachellaubc.com/api/get_prices");
+      let prices = res.data.data;
+      console.log(prices)
+      await prices.forEach((price) => {
+        if (price.name == ticketData.name) {
+          if (!price.active) {
+            setErrorMsg("The ticket in your cart is no longer avaliable");
+            stillValid = false
+          }
+        }
+      });
+    } else {
+      setErrorMsg("Invalid access code");
+      stillValid = false
+    }
+    
+    if (stillValid && checkFormValid()) {
       const {
         data: { id },
       } = await axios.post(`/api/create_checkout_session`, {
@@ -47,6 +82,9 @@ const Cart = ({ query }) => {
         process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
       );
       await stripe.redirectToCheckout({ sessionId: id });
+      setLoading(false);
+    } else {
+      setLoading(false);
     }
   };
 
@@ -109,16 +147,12 @@ const Cart = ({ query }) => {
             <p className="font-bold">${ticketData.price / 100 + 1.46}</p>
           </div>
         </div>
-        {!formValid && (
-          <p className="text-red-600 mt-10">
-            Fill in all the required information
-          </p>
-        )}
+        {errorMsg && <p className="text-red-600 mt-10">{errorMsg}</p>}
         <button
           onClick={redirectToCheckout}
           className={"p-2 rounded-lg shadow-md bg-purple-700 text-white mt-8"}
         >
-          Continue to Payment
+          {!loading ? "Continue to Payment" : "Loading..."}
         </button>
         <div className="pt-2">
           <a href="https://stripe.com">

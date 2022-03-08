@@ -31,7 +31,7 @@ const TierListing = ({data}) => {
             Buy Now
           </button>
         ) : (
-          <button className={"p-2 rounded-lg shadow-md bg-gray-200 text-gray-400 "}>
+          <button disabled className={"p-2 rounded-lg shadow-md bg-gray-200 text-gray-400 "}>
             Buy Now
           </button>
         )}
