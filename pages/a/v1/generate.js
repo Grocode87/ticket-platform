@@ -10,7 +10,7 @@ export default function Home() {
 
   const generateCode = () => {
     let sororityValid = false
-    axios.get('https://koachellaubc.com/api/get_prices').then(res => {
+    axios.get("https://koachellaubc.com/api/get_prices").then(res => {
       res.data.data.forEach(price => {
         if(price.name == "Sorority" && price.active) {
           sororityValid = true
@@ -18,8 +18,8 @@ export default function Home() {
       })
     })
 
-    console.log(`https://koachellaubc.com/api/generate_code?sorority=` + sororityValid ? sorority : false)
-    axios.get(`https://koachellaubc.com/api/generate_code?sorority=` + sororityValid ? sorority : false)
+    console.log("https://koachellaubc.com/api/generate_code?sorority=" + sororityValid ? sorority : false)
+    axios.get("https://koachellaubc.com/api/generate_code?sorority=" + sororityValid ? sorority : false)
     .then(res => {
       setCode(res.data.code)
     })
