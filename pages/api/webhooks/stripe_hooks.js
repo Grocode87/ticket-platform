@@ -139,13 +139,19 @@ const fulfillPurchase = async (session) => {
   const ticket_id = generateRandomCode(12);
 
   // Disable access code in db
+  console.log("disabling access code")
   const accessCode = session.metadata.accessCode;
-  await supabase
+  console.log(session.metadata.accessCode)
+
+  const {res, error} = await supabase
   .from("access_codes")
   .update({ valid: false })
   .match({ code: accessCode })
 
-  
+  console.log("disabled")
+  console.log(res)
+  console.log(error)
+
   // add ticket to db
   const newTicket = {
     code: ticket_id,
