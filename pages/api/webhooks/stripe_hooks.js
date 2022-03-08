@@ -140,12 +140,12 @@ const fulfillPurchase = async (session) => {
 
   // Disable access code in db
   const accessCode = session.metadata.accessCode;
-  if(!accessCode == "KSTAR22") {
-    await supabase
-    .from("access_codes")
-    .update({ valid: false })
-    .match({ code: accessCode })
-  }
+  await supabase
+  .from("access_codes")
+  .update({ valid: false })
+  .match({ code: accessCode })
+
+  
   // add ticket to db
   const newTicket = {
     code: ticket_id,
