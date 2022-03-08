@@ -5,14 +5,18 @@ import axios from 'axios';
 
 export default function Home() {
   const [code, setCode] = useState("")
-  const [sorority, setSorority] = useState("")
+  const [sorority, setSorority] = useState(false)
 
 
   const generateCode = async () => {
     let sororityValid = false
 
-    const prices = await axios.get("https://koachellaubc.com/api/get_prices")
-    prices.data.data.forEach(price => {
+    const { data, error } = await axios.get("https://koachellaubc.com/api/get_prices")
+
+    console.log(data)
+
+    let prices = data.data
+    prices.forEach(price => {
       if(price.name == "Exclusive Sorority" && price.active) {
         sororityValid = true
       }
