@@ -41,7 +41,9 @@ export async function getServerSideProps(context) {
     prices = prices.filter((ticket) => {
       if(!codeValid.data?.sorority) {
         return !(ticket.name == "Exclusive Sorority")
-      } 
+      } else {
+        return true
+      }
     })
 
     prices = prices.sort((first, second) => {
