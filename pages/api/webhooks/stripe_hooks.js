@@ -15,6 +15,7 @@
 
  import initStripe from "stripe";
 import Cors from "micro-cors";
+import moment from 'moment'; 
 
 import { buffer } from "micro";
 import getStream from 'get-stream';
@@ -38,21 +39,16 @@ const generateTicket = async (session, ticket_id) => {
   const doc = new PDFDocument();
 
   //IMAGE
-  //doc.image("koachella.jpg", 75, 50, {width: 250});
-  doc.text("Saturday, March 19th at 8:00PM", 80, 130)
-  doc.text("First house on the left", 80, 160)
-  doc.text("2880 Westbrook Mall", 80, 180)
+  doc.image("public/images/ticket_template.png", 0, 0, {width: 620, height: 800})
   
-  doc.text("Ticket ID: " + ticket_id, 80, 220)
+  doc.fontSize(15).font('Helvetica-Bold').text(ticket_id, 353, 50)
 
   //'./public/uploads'
   //doc.image("phone-icon.jpg", 65, 260, {width: 50});
-  doc.font('Helvetica-Bold').text("Be ready to present this", 120, 270)
-  doc.font('Helvetica-Bold').text("ticket at the door for entry", 120, 290)
 
-  doc.fontSize(30).font('Helvetica-Bold').text(session.metadata.name, 25, 350, {align: "center"})
-  doc.fontSize(15).text(session.metadata.ticketName, 25, 390, {align: "center"})
-  doc.image(generateQRCode("https://koachellaubc.com/ticket/" + ticket_id), 120, 410, {width: 300});
+  doc.fontSize(40).font('Helvetica-Bold').text(session.metadata.name, 2, 300, {width: 620, align: "center"})
+  doc.fontSize(25).text(session.metadata.ticketName, 2, 355, {width: 620, align: "center"})
+  doc.image(generateQRCode("https://koachellaubc.com/ticket/" + ticket_id), 184, 416, {width: 260});
 
   doc.end();
 
@@ -67,25 +63,22 @@ const generateReciept = async (session) => {
 
   // instantiate the library
   const doc = new PDFDocument();
+  doc.image("public/images/receipt_template.png", 0, 0, {width: 620, height: 800})
 
-  doc.text("Purchase Receipt", 80, 50)
-  doc.text("Koachella 2022", 80, 70)
-  doc.text("Date of Purchase: XXXXXXXXX", 80, 110)
-  doc.text("Name: " + session.metadata.name, 80, 130)
-  doc.text("Email: " + session.customer_details.email, 80, 150)
+  doc.text(moment().format('MMMM Do YYYY, h:mm:ss a'), 200, 266)
+  doc.text(session.metadata.name, 100, 297)
+  doc.text(session.customer_details.email, 100, 327)
   
-  doc.text(session.metadata.ticketName, 80, 250)
-  doc.text("Tax/Fees", 80, 270)
-  doc.text("Total", 80, 310)
+  doc.fontSize(20)
+  doc.text(session.metadata.ticketName, 80, 410)
+  doc.text("Tax/Fees", 80, 440)
+  doc.text("Total", 80, 500)
 
   doc.font('Helvetica-Bold')
-  doc.text("$" + session.amount_total / 100, 350, 250)
-  doc.text("$0.00", 350, 270)
-  doc.text("$" + session.amount_total / 100, 350, 310)
+  doc.text("$" + Math.round((session.amount_total / 100 - 1.44) * 100) / 100, 420, 410)
+  doc.text("$1.44", 420, 440)
+  doc.text("$" + session.amount_total / 100, 420, 510)
   doc.font('Helvetica')
-
-  doc.text("All sales are final. We are not able to offer refunds or exchanges for tickets.", 110, 420)
-  doc.text("Thank you for your purchase. Enjoy the event!", 80, 435, {align: "center"})
 
   doc.end();
 

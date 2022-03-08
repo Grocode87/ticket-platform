@@ -1,5 +1,14 @@
 const TicketCode = () => {
-    return <div>Thank you for your purchase</div>
-}
+  const router = useRouter();
 
-export default TicketCode
+  const { code } = router.query;
+
+  return (
+    <div>
+      <div>Thank you for your purchase</div>
+      <div>Ticket Code: {code}</div>
+    </div>
+  );
+};
+
+export default TicketCode;
