@@ -178,7 +178,7 @@ const Home = () => {
               >
                 <Image src="/images/logo-ig.png" width={20} height={20} />
               </a>
-              <a target="_blank" rel="noreferrer">
+              <a target="_blank" rel="noreferrer" href="https://www.facebook.com/events/652480636017190">
                 <Image src="/images/logo-fb.png" width={20} height={20} />
               </a>
               <a
