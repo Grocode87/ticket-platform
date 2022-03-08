@@ -8,20 +8,19 @@ export default function Home() {
   const [sorority, setSorority] = useState("")
 
 
-  const generateCode = () => {
+  const generateCode = async () => {
     let sororityValid = false
-    axios.get("https://koachellaubc.com/api/get_prices").then(res => {
-      res.data.data.forEach(price => {
-        if(price.name == "Sorority" && price.active) {
-          sororityValid = true
-        }
-      })
+
+    const prices = await axios.get("https://koachellaubc.com/api/get_prices")
+    prices.data.data.forEach(price => {
+      if(price.name == "Sorority" && price.active) {
+        sororityValid = true
+      }
     })
 
-    axios.get("https://koachellaubc.com/api/generate_code?sorority=" + (sororityValid ? sorority : false))
-    .then(res => {
-      setCode(res.data.code)
-    })
+    const codeData = await axios.get("https://koachellaubc.com/api/generate_code?sorority=" + (sororityValid ? sorority : false))
+    
+    setCode(codeData.data.code)
   }
   return (
     <div>
