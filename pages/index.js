@@ -103,13 +103,10 @@ const Home = () => {
 
       <div className="object-cover w-full h-full fixed bg-black -z-50"></div>
       <video
-        autoPlay
-        muted
-        loop
         autoPlay={true}
         loop={true}
         controls={false}
-        playsInline
+        playsinline
         muted
         className="object-cover w-full h-full absolute -z-10 bg-black blur-md"
         src={
