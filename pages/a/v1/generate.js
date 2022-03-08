@@ -37,7 +37,7 @@ export default function Home() {
             <div className="w-1/2 m-auto">
             <p className="text-2xl pb-8">Generate a new ticket code</p>
             <div className="pb-16">
-              <p>Check this box if it's for a sorority girl</p><input type='checkbox' onChange={(e) => {setSorority(e.target.checked)}}></input>
+              <p>Check this box if the code for a sorority girl</p><input type="checkbox" onChange={(e) => {setSorority(e.target.checked)}}></input>
             </div>
             <button className="rounded p-2 bg-blue-600 text-white w-min" onClick={generateCode}><p>Generate</p></button>
            
