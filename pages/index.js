@@ -103,26 +103,14 @@ const Home = () => {
       </Head>
 
       <div className="object-cover w-full h-full fixed bg-black -z-50"></div>
-
-      {onMobile ? (
-        <video
+      <video
         autoPlay
         muted
         loop
         className="object-cover w-full h-full absolute -z-10 bg-black blur-md"
+        src={onMobile ? "/videos/background-mobile.mp4" :  "/videos/background.mp4"}
       >
-        <source src="/videos/background-mobile.mp4" type="video/mp4" />
       </video>
-      ) : (
-        <video
-          autoPlay
-          muted
-          loop
-          className="object-cover w-full h-full absolute -z-10 bg-black blur-md"
-        >
-          <source src="/videos/background.mp4" type="video/mp4" />
-        </video>
-      )}
       <div className="w-full min-h-screen">
         <div className="m-auto w-full lg:w-5/12 min-h-screen bg-black bg-opacity-50 text-white">
           {/** BASIC INFO*/}
