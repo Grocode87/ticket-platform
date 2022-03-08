@@ -130,7 +130,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
   const mailData = {
     from: "noreply@koachellaubc.com",
     to: toEmail,
-    subject: `Order Confirmation - Koachella`,
+    subject: `Order Confirmation/Ticket - Koachella 2022`,
     text: `
     Hello ${session.metadata.name}}:
 
