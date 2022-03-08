@@ -18,8 +18,7 @@ export default function Home() {
       })
     })
 
-    console.log("https://koachellaubc.com/api/generate_code?sorority=" + sororityValid ? sorority : false)
-    axios.get("https://koachellaubc.com/api/generate_code?sorority=" + sororityValid ? sorority : false)
+    axios.get("https://koachellaubc.com/api/generate_code?sorority=" + (sororityValid ? sorority : false))
     .then(res => {
       setCode(res.data.code)
     })
