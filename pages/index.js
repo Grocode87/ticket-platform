@@ -128,7 +128,7 @@ const Home = () => {
             {/** BOTTOM */}
             <div className="text-center">
               <div className="pb-14">
-                <p className="text-3xl font-bold pb-3">GET YOUR TICKET</p>
+                <p className="text-2xl font-bold pb-3">GET ON THE GUESTLIST</p>
                 <input
                   type="text"
                   className="bg-gray-200 rounded-xl p-2 text-black"
