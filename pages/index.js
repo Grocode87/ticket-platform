@@ -105,7 +105,7 @@ const Home = () => {
       <div className="object-cover w-full h-full fixed bg-black -z-50"></div>
 
       {onMobile ? (
-        <div className="object-cover w-full h-full absolute -z-10 bg-gif blur-md" />
+        <img src="images/phone-video.gif" className="object-cover w-full h-full absolute -z-10 blur-md" />
       ) : (
         <video
           autoPlay
