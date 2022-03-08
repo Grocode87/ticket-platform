@@ -23,7 +23,7 @@ const Success = () => {
             <p className="pb-6">Thank you for your purchase of a Koachella 2022 ticket</p>
 
             <p className="pb-20">
-              A copy of your reciept will be sent to your email shortly. Enjoy the
+              Your reciept and ticket will be sent to your email shortly. Enjoy the
               event!
             </p>
 

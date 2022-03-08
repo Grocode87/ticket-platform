@@ -14,7 +14,7 @@ const Tickets = ({ code, prices }) => {
         <p className="text-3xl font-bold pt-14 text-center sm:text-left">TICKETS</p>
 
 
-        <div className="px-8 sm:px-0">
+        <div className="px-8 sm:px-0 mb-16">
           {prices.map((price) => {
             return <TierListing key={price.id} data={price} />;
           })}

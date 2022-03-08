@@ -117,13 +117,13 @@ const Home = () => {
           <source src="/videos/background.mp4" type="video/mp4" />
         </video>
       )}
-      <div className="w-full min-h-scree">
+      <div className="w-full min-h-screen">
         <div className="m-auto w-full lg:w-5/12 min-h-screen bg-black bg-opacity-50 text-white">
           {/** BASIC INFO*/}
           <div className="min-h-screen flex flex-col justify-between">
             {/** TOP */}
             <div className="text-3xl p-6 pt-20 sm:p-20">
-              <Image src="/images/header.png" width={800} height={300} />
+              <Image src="/images/header-new.png" width={800} height={210} />
             </div>
 
             {/** BOTTOM */}
@@ -158,7 +158,7 @@ const Home = () => {
                   })
                 }
               >
-                <div className="flex m-auto items-center text-center justify-center pb-8">
+                <div className="flex m-auto items-center text-center justify-center pb-20">
                   <Image src="/images/arrow-down.png" width={20} height={13} />
                   <p className="font-semibold text-md pl-4">
                     SEE EVENT DETAILS
@@ -170,15 +170,15 @@ const Home = () => {
 
           {/**BELOW FIRST PAGE DETAILS*/}
           <div className="px-8 py-8">
-            <p className="text-2xl font-bold list">KOACHELLA 2022</p>
+            <p className="text-2xl font-bold list">KOACHΣLLA 2022</p>
             <div className="flex space-x-2 pt-2">
-              <a href="https://www.instagram.com/koachellaubc/">
-                <Image src='/images/logo-ig.png' width={20} height={20}/>
+              <a href="https://www.instagram.com/koachellaubc/" target="_blank">
+                <Image src='/images/logo-ig.png'  width={20} height={20}/>
               </a>
-              <a>
+              <a target="_blank">
                 <Image src='/images/logo-fb.png' width={20} height={20}/>
               </a>
-              <a href="https://open.spotify.com/playlist/6ar8k0DtuSOejdYLKLjdWS?si=ZkL7cWpaQQGxc6e1aFUzHA&nd=1&utm_medium=organic&_branch_referrer=H4sIAAAAAAAAA72N3wqCMByFn2ZeampYBBKCWJAQIiF1E7%2B2mdO1jf2B7OlbQa8QnIvD%2Bfg4g7XKbKLIKGlZP4egVMiZmKKt0pI4bHOpqAhQsuwd51eneT58FJQWKKl8Pjj82Vg%2B%2FKQ4zJwZ62sGej0tSuvaIx3JuT7UI%2BlalFaGobS8TPUKdwqaZvfEGY2hOr32xfcMOL8Bnv5yiJJMEE%2FjoKdgnaa51HcQDL8B91YitR0BAAA%3D&product=open&%24full_url=https%3A%2F%2Fopen.spotify.com%2Fplaylist%2F6ar8k0DtuSOejdYLKLjdWS%3Fsi%3DZkL7cWpaQQGxc6e1aFUzHA&feature=organic&_branch_match_id=1029543886602822366">
+              <a target="_blank" href="https://open.spotify.com/playlist/6ar8k0DtuSOejdYLKLjdWS?si=ZkL7cWpaQQGxc6e1aFUzHA&nd=1&utm_medium=organic&_branch_referrer=H4sIAAAAAAAAA72N3wqCMByFn2ZeampYBBKCWJAQIiF1E7%2B2mdO1jf2B7OlbQa8QnIvD%2Bfg4g7XKbKLIKGlZP4egVMiZmKKt0pI4bHOpqAhQsuwd51eneT58FJQWKKl8Pjj82Vg%2B%2FKQ4zJwZ62sGej0tSuvaIx3JuT7UI%2BlalFaGobS8TPUKdwqaZvfEGY2hOr32xfcMOL8Bnv5yiJJMEE%2FjoKdgnaa51HcQDL8B91YitR0BAAA%3D&product=open&%24full_url=https%3A%2F%2Fopen.spotify.com%2Fplaylist%2F6ar8k0DtuSOejdYLKLjdWS%3Fsi%3DZkL7cWpaQQGxc6e1aFUzHA&feature=organic&_branch_match_id=1029543886602822366">
                 <Image src='/images/logo-spotify.png' width={20} height={20}/>
               </a>
             </div>
