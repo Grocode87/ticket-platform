@@ -130,7 +130,6 @@ const Home = () => {
                   placeholder="Enter your Access Code"
                   onChange={handleAccessCodeChange}
                 ></input>
-                <p>TESTING: {onMobile.toString()}</p>
                 {codeMsg && (
                   <p className="text-red-600">Enter a valid access code</p>
                 )}
