@@ -151,7 +151,7 @@ const Home = () => {
               <button
                 onClick={() =>
                   window.scrollTo({
-                    top: bottom.current.offsetTop,
+                    top: bottom.current.offsetTop - 200,
                     left: 0,
                     behavior: "smooth",
                   })
@@ -169,6 +169,7 @@ const Home = () => {
 
           {/**BELOW FIRST PAGE DETAILS*/}
           <div className="px-8 py-8">
+            <div ref={bottom} />
             <p className="text-2xl font-bold list">KOACHΣLLA 2022</p>
             <div className="flex space-x-2 pt-2">
               <a
@@ -190,14 +191,15 @@ const Home = () => {
               </a>
             </div>
             <p className="pt-3">
-              From the house that brought you @boslen , @felixcartal ,
-              @ericreprid , @graysonrepp and @cotis1k28 to name a few, we are
+              From the house that brought you @boslen, @felixcartal,
+              @ericreprid, @graysonrepp and @cotis1k28 to name a few, we are
               stoked to re-introduce the biggest and baddest music showcase
               after a 2 year hietus.
             </p>
             <p className="pt-3">
               The Brothers of Kappa Sigma officially present to you, KOACHΣLLA{" "}
             </p>
+            
             <p className="pt-3">
               Replicating the energy of a three-day festival to a night of frat
               extravagance. Flower crowns and dream catchers recommended. Bring
@@ -241,7 +243,6 @@ const Home = () => {
               date event info and updates
             </p>
 
-            <div ref={bottom} />
           </div>
         </div>
       </div>
