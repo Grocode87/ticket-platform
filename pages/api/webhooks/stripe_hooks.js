@@ -39,7 +39,9 @@ const generateTicket = async (session, ticket_id) => {
   const doc = new PDFDocument();
 
   //IMAGE
-  doc.image("public/images/ticket_template.png", 0, 0, {width: 620, height: 800})
+  const ticketTemplate = await fetchImage("https://koachellaubc.com/images%2Fticket_template.png");
+  doc.image(ticketTemplate, 0, 0, {width: 620, height: 800})
+  //doc.image("public/images/ticket_template.png", 0, 0, {width: 620, height: 800})
   
   doc.fontSize(15).font('Helvetica-Bold').text(ticket_id, 353, 50)
 
@@ -57,13 +59,23 @@ const generateTicket = async (session, ticket_id) => {
   return pdfStream
 };
 
+const fetchImage = async (src) => {
+  const response = await fetch(src);
+  const image = await response.buffer();
+
+  return image;
+};
 
 const generateReciept = async (session) => {
   const PDFDocument = require("pdfkit");
 
   // instantiate the library
   const doc = new PDFDocument();
-  doc.image("public/images/receipt_template.png", 0, 0, {width: 620, height: 800})
+
+      
+  const receiptTemplate = await fetchImage("https://koachellaubc.com/images%2Freceipt_template.png");
+  doc.image(receiptTemplate, 0, 0, {width: 620, height: 800})
+
 
   doc.text(moment().format('MMMM Do YYYY, h:mm:ss a'), 200, 266)
   doc.text(session.metadata.name, 100, 297)
