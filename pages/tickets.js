@@ -37,17 +37,12 @@ export async function getServerSideProps(context) {
     let res = await axios.get("https://koachellaubc.com/api/get_prices")
     console.log(codeValid)
     let prices = res.data.data
-    if(codeValid.data?.sorority) {
-      prices = prices.filter((ticket) => {
-        return ticket.name == "Sorority"
-      })
-    }
 
     prices = prices.filter((ticket) => {
       if(codeValid.data?.sorority) {
-        return ticket.name == "Sorority"
+        return ticket.name == "Exclusive Sorority"
       } else {
-        return !(ticket.name == "Sorority")
+        return !(ticket.name == "Exclusive Sorority")
       }
     })
 

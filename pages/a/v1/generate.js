@@ -13,7 +13,7 @@ export default function Home() {
 
     const prices = await axios.get("https://koachellaubc.com/api/get_prices")
     prices.data.data.forEach(price => {
-      if(price.name == "Sorority" && price.active) {
+      if(price.name == "Exclusive Sorority" && price.active) {
         sororityValid = true
       }
     })
