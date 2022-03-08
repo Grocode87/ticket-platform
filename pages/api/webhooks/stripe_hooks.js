@@ -156,7 +156,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
     This email was sent from an address that cannot accept incoming email. Please do not reply to this message. \n
     `,
 
-    
+
     html: `
     <div id="gmail-:5au" class="gmail-Ar gmail-Au gmail-Ao">
   <div id="gmail-:55r" class="gmail-Am gmail-Al editable gmail-LW-avf gmail-tS-tW gmail-tS-tY" style="direction: ltr; min-height: 590px;" tabindex="1" role="textbox" aria-label="Message Body" aria-multiline="true">Hello ${session.metadata.name}: 
@@ -166,8 +166,6 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
     <br>
     <br>
     <strong>You can find your ticket and receipt attached.</strong> 
-    <br>
-    <br>
     <br>
     <br>
     <strong>Ticket Info:</strong> 
@@ -181,8 +179,6 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
     <br>2880 Wesbrook Mall, First House on the Left 
     <br>
     <br>
-    <br>
-    <br>
     <br>We look forward to seeing you there, please arrive on time as the event will start shortly after 7:00PM. 
     <br>
     <br>
@@ -193,8 +189,6 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
     <br>
     <br>KOACHELLA 2022
     <br>PRESENTED BY KAPPA SIGMA
-    <br>
-    <br>
     <br>
     <br>
     <br>This email was sent from an address that cannot accept incoming email. Please do not reply to this message.
@@ -249,7 +243,7 @@ const fulfillPurchase = async (session) => {
   const ticketPdf = await generateTicket(session, ticket_id);
   const receiptPdf = await generateReciept(session);
 
-  await sendMail(session.customer_details.email, ticketPdf, receiptPdf);
+  await sendMail(session.customer_details.email, ticketPdf, receiptPdf, session);
 };
 
 export const config = { api: { bodyParser: false } };
