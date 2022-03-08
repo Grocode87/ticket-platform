@@ -105,7 +105,14 @@ const Home = () => {
       <div className="object-cover w-full h-full fixed bg-black -z-50"></div>
 
       {onMobile ? (
-        <img src="images/phone-video.gif" className="object-cover w-full h-full absolute -z-10 blur-md" />
+        <video
+        autoPlay
+        muted
+        loop
+        className="object-cover w-full h-full absolute -z-10 bg-black blur-md"
+      >
+        <source src="/videos/background-mobile.mp4" type="video/mp4" />
+      </video>
       ) : (
         <video
           autoPlay
@@ -135,6 +142,7 @@ const Home = () => {
                   placeholder="Enter your Access Code"
                   onChange={handleAccessCodeChange}
                 ></input>
+                <p>TESTING: {onMobile.toString()}</p>
                 {codeMsg && (
                   <p className="text-red-600">Enter a valid access code</p>
                 )}
