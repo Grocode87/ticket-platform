@@ -42,13 +42,14 @@ import { useRouter } from "next/router";
 const Home = () => {
   const [code, setCode] = useState("");
   const [codeMsg, setCodeMsg] = useState("");
-  const [onMobile, setOnMobile] = useState(false);
+  const [onMobile, setOnMobile] = useState(true);
 
   const dispatch = useContext(CartDispatchContext);
 
   const router = useRouter();
 
   const bottom = useRef(null);
+  const videoRef = useRef(null);
 
   const handleAccessCodeChange = (e) => {
     setCode(e.target.value);
@@ -91,6 +92,7 @@ const Home = () => {
     };
 
     setOnMobile(window.mobileCheck());
+    videoRef.current.play();
   }, []);
 
   return (
@@ -103,10 +105,11 @@ const Home = () => {
 
       <div className="object-cover w-full h-full fixed bg-black -z-50"></div>
       <video
+        ref={videoRef}
         autoPlay={true}
         loop={true}
         controls={false}
-        playsinline
+        playsInline
         muted
         className="object-cover w-full h-full absolute -z-10 bg-black blur-md"
         src={
