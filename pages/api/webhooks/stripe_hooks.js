@@ -13,13 +13,13 @@
  *     - Thank you for your purchase
  */
 
- import initStripe from "stripe";
+import initStripe from "stripe";
 import Cors from "micro-cors";
-import moment from 'moment'; 
+import moment from "moment";
 
 import { buffer } from "micro";
-import getStream from 'get-stream';
-import generateRandomCode from '../../../utils/generate';
+import getStream from "get-stream";
+import generateRandomCode from "../../../utils/generate";
 import { supabase } from "../../../utils/supabaseClient";
 
 // Calls an external API to generate a qr code for the given data - returns an image
@@ -39,24 +39,35 @@ const generateTicket = async (session, ticket_id) => {
   const doc = new PDFDocument();
 
   //IMAGE
-  const ticketTemplate = await fetchImage("https://koachellaubc.com/images%2Fticket_template.png");
-  doc.image(ticketTemplate, 0, 0, {width: 620, height: 800})
+  const ticketTemplate = await fetchImage(
+    "https://koachellaubc.com/images%2Fticket_template.png"
+  );
+  doc.image(ticketTemplate, 0, 0, { width: 620, height: 800 });
   //doc.image("public/images/ticket_template.png", 0, 0, {width: 620, height: 800})
-  
-  doc.fontSize(15).font('Helvetica-Bold').text(ticket_id, 353, 50)
+
+  doc.fontSize(15).font("Helvetica-Bold").text(ticket_id, 353, 50);
 
   //'./public/uploads'
   //doc.image("phone-icon.jpg", 65, 260, {width: 50});
 
-  doc.fontSize(40).font('Helvetica-Bold').text(session.metadata.name, 2, 300, {width: 620, align: "center"})
-  doc.fontSize(25).text(session.metadata.ticketName, 2, 355, {width: 620, align: "center"})
-  doc.image(generateQRCode("https://koachellaubc.com/ticket/" + ticket_id), 184, 416, {width: 260});
+  doc
+    .fontSize(40)
+    .font("Helvetica-Bold")
+    .text(session.metadata.name, 2, 300, { width: 620, align: "center" });
+  doc
+    .fontSize(25)
+    .text(session.metadata.ticketName, 2, 355, { width: 620, align: "center" });
+  doc.image(
+    generateQRCode("https://koachellaubc.com/ticket/" + ticket_id),
+    184,
+    416,
+    { width: 260 }
+  );
 
   doc.end();
 
-  
   const pdfStream = await getStream.buffer(doc);
-  return pdfStream
+  return pdfStream;
 };
 
 const fetchImage = async (src) => {
@@ -72,34 +83,38 @@ const generateReciept = async (session) => {
   // instantiate the library
   const doc = new PDFDocument();
 
-      
-  const receiptTemplate = await fetchImage("https://koachellaubc.com/images%2Freceipt_template.png");
-  doc.image(receiptTemplate, 0, 0, {width: 620, height: 800})
+  const receiptTemplate = await fetchImage(
+    "https://koachellaubc.com/images%2Freceipt_template.png"
+  );
+  doc.image(receiptTemplate, 0, 0, { width: 620, height: 800 });
 
+  doc.text(moment().format("MMMM Do YYYY, h:mm:ss a"), 200, 266);
+  doc.text(session.metadata.name, 100, 297);
+  doc.text(session.customer_details.email, 100, 327);
 
-  doc.text(moment().format('MMMM Do YYYY, h:mm:ss a'), 200, 266)
-  doc.text(session.metadata.name, 100, 297)
-  doc.text(session.customer_details.email, 100, 327)
-  
-  doc.fontSize(20)
-  doc.text(session.metadata.ticketName, 80, 410)
-  doc.text("Tax/Fees", 80, 440)
-  doc.text("Total", 80, 500)
+  doc.fontSize(20);
+  doc.text(session.metadata.ticketName, 80, 410);
+  doc.text("Tax/Fees", 80, 440);
+  doc.text("Total", 80, 500);
 
-  doc.font('Helvetica-Bold')
-  doc.text("$" + Math.round((session.amount_total / 100 - 1.44) * 100) / 100, 420, 410)
-  doc.text("$1.44", 420, 440)
-  doc.text("$" + session.amount_total / 100, 420, 510)
-  doc.font('Helvetica')
+  doc.font("Helvetica-Bold");
+  doc.text(
+    "$" + Math.round((session.amount_total / 100 - 1.44) * 100) / 100,
+    420,
+    410
+  );
+  doc.text("$1.44", 420, 440);
+  doc.text("$" + session.amount_total / 100, 420, 510);
+  doc.font("Helvetica");
 
   doc.end();
 
   const pdfStream = await getStream.buffer(doc);
-  return pdfStream
+  return pdfStream;
 };
 
 // Handler to send email with content
-const sendMail = async (toEmail, ticketPdf, receiptPdf) => {
+const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
   let nodemailer = require("nodemailer");
 
   const transporter = nodemailer.createTransport({
@@ -116,41 +131,111 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf) => {
     from: "noreply@koachellaubc.com",
     to: toEmail,
     subject: `Order Confirmation - Koachella`,
-    text: "Thank you for your purchase of a Koachella 2022 Ticket, your ticket and receipt are attached",
-    attachments: [{
-      filename: `koachella_ticket.pdf`,
-      content: ticketPdf,
-      encoding: "base64",
-    },
-    {
-      filename: `purchase_receipt.pdf`,
-      content: receiptPdf,
-      encoding: "base64",
-    }],
+    text: `
+    Hello ${session.metadata.name}}:
+
+    Thank you for your purchase of a Koachella 2022 ticket! \n
+
+    You can find your ticket and receipt attached. \n
+
+    Ticket Info: \n
+    ${session.metadata.ticketName} x1 \n
+    ${session.metadata.name} \n
+
+    Event Details: \n
+    7:00PM, Saturday, March 19th, 2022 \n
+    2880 Wesbrook Mall, First House on the Left \n
+
+
+    We look forward to seeing you there, please arrive on time as the event will start shortly after 7:00PM. \n
+
+
+    Enjoy the event, and stay safe! \n
+
+
+    This email was sent from an address that cannot accept incoming email. Please do not reply to this message. \n
+    `,
+
+    
+    html: `
+    <div id="gmail-:5au" class="gmail-Ar gmail-Au gmail-Ao">
+  <div id="gmail-:55r" class="gmail-Am gmail-Al editable gmail-LW-avf gmail-tS-tW gmail-tS-tY" style="direction: ltr; min-height: 590px;" tabindex="1" role="textbox" aria-label="Message Body" aria-multiline="true">Hello ${session.metadata.name}: 
+    <br>
+    <br>Thank you for your purchase of a 
+    <span class="LI ng" data-ddnwab="PR_1_0" aria-invalid="spelling">Koachella</span> 2022 ticket! 
+    <br>
+    <br>
+    <strong>You can find your ticket and receipt attached.</strong> 
+    <br>
+    <br>
+    <br>
+    <br>
+    <strong>Ticket Info:</strong> 
+    <br>
+    ${session.metadata.ticketName} x1 
+    <br>${session.metadata.name}
+    <br>
+    <br>
+    <strong>Event Details:</strong> 
+    <br>7:00PM, Saturday, March 19th, 2022 
+    <br>2880 Wesbrook Mall, First House on the Left 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>We look forward to seeing you there, please arrive on time as the event will start shortly after 7:00PM. 
+    <br>
+    <br>
+    <br>
+    <strong>Enjoy the event!</strong> 
+    <br>
+    <br>
+    <br>
+    <br>KOACHELLA 2022
+    <br>PRESENTED BY KAPPA SIGMA
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>This email was sent from an address that cannot accept incoming email. Please do not reply to this message.
+  </div>
+</div>
+    
+    `, 
+    attachments: [
+      {
+        filename: `koachella_ticket.pdf`,
+        content: ticketPdf,
+        encoding: "base64",
+      },
+      {
+        filename: `purchase_receipt.pdf`,
+        content: receiptPdf,
+        encoding: "base64",
+      },
+    ],
   };
 
-  await transporter.sendMail(mailData)
+  await transporter.sendMail(mailData);
 };
 
 const fulfillPurchase = async (session) => {
-  
-
   // Create ticket id
   const ticket_id = generateRandomCode(12);
 
   // Disable access code in db
-  console.log("disabling access code")
+  console.log("disabling access code");
   const accessCode = session.metadata.accessCode;
-  console.log(session.metadata.accessCode)
+  console.log(session.metadata.accessCode);
 
-  const {res, error} = await supabase
-  .from("access_codes")
-  .update({ valid: false })
-  .match({ code: accessCode })
+  const { res, error } = await supabase
+    .from("access_codes")
+    .update({ valid: false })
+    .match({ code: accessCode });
 
-  console.log("disabled")
-  console.log(res)
-  console.log(error)
+  console.log("disabled");
+  console.log(res);
+  console.log(error);
 
   // add ticket to db
   const newTicket = {
@@ -158,19 +243,14 @@ const fulfillPurchase = async (session) => {
     name: session.metadata.ticketName || "",
     customer_name: session.metadata.name || "",
     customer_email: session.customer_details.email || "",
-  }
+  };
   await supabase.from("tickets").insert([newTicket]);
-  
-  const ticketPdf = await generateTicket(session, ticket_id)
-  const receiptPdf = await generateReciept(session)
-  
-  await sendMail(session.customer_details.email, ticketPdf, receiptPdf)
 
+  const ticketPdf = await generateTicket(session, ticket_id);
+  const receiptPdf = await generateReciept(session);
 
+  await sendMail(session.customer_details.email, ticketPdf, receiptPdf);
 };
-
-
-
 
 export const config = { api: { bodyParser: false } };
 
