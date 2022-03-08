@@ -4,7 +4,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+        backgroundImage: {
+          'gif': "url('/images/phone-video.gif')",
+        }
+    },
   },
   plugins: [],
 }

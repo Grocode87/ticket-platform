@@ -15,9 +15,9 @@ const TierListing = ({data}) => {
   }
 
   return (
-    <div className="w-full lg:w-1/2 border rounded-lg shadow-md p-4 my-2 flex justify-between items-center">
+    <div className="w-full md:w-8/12 lg:w-1/2 border border-gray-700 rounded-lg shadow-md p-4 my-8 flex justify-between items-center bg-gray-900">
       <div className="pr-4 text-left">
-        <p className="">Koachella</p>
+        <p className="">Koachella 2022</p>
         <p className="font-bold text-xl pb-3">{name} Ticket</p>
         {sold_out ? (
           <p className="text-red-600 font-bold">SOLD OUT</p>
@@ -27,7 +27,7 @@ const TierListing = ({data}) => {
       </div>
       <div className="whitespace-nowrap">
         {active ? (
-          <button onClick={redirectToCart} className={"p-2 rounded-lg shadow-md bg-red-500 text-white "}>
+          <button onClick={redirectToCart} className={"p-2 rounded-lg shadow-md bg-purple-700 text-white "}>
             Buy Now
           </button>
         ) : (
