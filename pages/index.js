@@ -178,7 +178,7 @@ const Home = () => {
               >
                 <Image src="/images/logo-ig.png" width={20} height={20} />
               </a>
-              <a target="_blank">
+              <a target="_blank" rel="noreferrer">
                 <Image src="/images/logo-fb.png" width={20} height={20} />
               </a>
               <a
@@ -195,25 +195,49 @@ const Home = () => {
               stoked to re-introduce the biggest and baddest music showcase
               after a 2 year hietus.
             </p>
-            <p className="pt-6">
+            <p className="pt-3">
               The Brothers of Kappa Sigma officially present to you, KOACHΣLLA{" "}
             </p>
-            <p className="pt-6">WHEN: Saturday, March 19th, 7:00-late</p>
-            <p className="">
-              WHERE: 2880 Westbrook Mall, First house on the left
+            <p className="pt-3">
+              Replicating the energy of a three-day festival to a night of frat
+              extravagance. Flower crowns and dream catchers recommended. Bring
+              a friend (or 5) and get ready for a night of culture, production
+              and atmosphere like no other in the village.
             </p>
-            <p className="pt-6">IMPORTANT</p>
+            <p className="pt-3">
+              This year, KOACHΣLLA is set to feature some of the biggest
+              Vancouver based artists.
+            </p>
+            <p className="pt-6 font-bold text-xl">Lineup TBA</p>
+            <p className="pt-6">
+              WHEN: March 19th, 7:00pm. Doors close at 8:30pm
+            </p>
+            <p className="">
+              WHERE: 2880 Westbrook Mall, First House on the Left
+            </p>
+            <p className="pt-6">PLEASE NOTE</p>
             <ul className="list-disc pl-4">
-              <li>
-                DO NOT SHOW UP LATE - DOORS OPEN AT 7:00 and the event starts
-                shortly after
-              </li>
               <li>NO GLASS BOTTLES</li>
               <li>NO BACKPACKS/BAG</li>
+              <li>VALID UBC ID REQUIRED FOR ENTRY</li>
+              <li>ENTRY SUBJECT TO CAPACITY</li>
             </ul>
 
             <p className="pt-8">
-              FOLLOW @koachellaubc and @kappasigmaubc on instagram for up to
+              FOLLOW 
+              <a
+                rel="noreferrer"
+                href="https://www.instagram.com/koachellaubc/"
+                target="_blank"
+                className="text-blue-400"
+              > @koachellaubc </a> 
+              and 
+              <a
+                rel="noreferrer"
+                href="https://www.instagram.com/kappasigmaubc/"
+                target="_blank"
+                className="text-blue-400"
+              > @kappasigmaubc </a>  on instagram for up to
               date event info and updates
             </p>
 
