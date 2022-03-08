@@ -10,14 +10,17 @@ const handler = async (req, res) => {
 
     console.log(db_data)
     let valid = false;
+    let sorority = false;
+    
     if(db_data.data && db_data.data.length > 0) {
         if(db_data.data[0].valid) {
             valid = true;
+            sorority = db_data.data[0].sorority
         }
     }
 
     // return code
-    res.send({ code: req.query.code, valid: valid})
+    res.send({ code: req.query.code, valid: valid, sorority: sorority})
 }
 
 

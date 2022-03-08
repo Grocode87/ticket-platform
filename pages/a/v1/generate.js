@@ -5,10 +5,21 @@ import axios from 'axios';
 
 export default function Home() {
   const [code, setCode] = useState("")
+  const [sorority, setSorority] = useState("")
 
 
   const generateCode = () => {
-    axios.get(`/api/generate_code`)
+    let sororityValid = false
+    axios.get('https://koachellaubc.com/api/get_prices').then(res => {
+      res.data.data.forEach(price => {
+        if(price.name == "Sorority" && price.active) {
+          sororityValid = true
+        }
+      })
+    })
+
+    console.log(`https://koachellaubc.com/api/generate_code?sorority=` + sororityValid ? sorority : false)
+    axios.get(`https://koachellaubc.com/api/generate_code?sorority=` + sororityValid ? sorority : false)
     .then(res => {
       setCode(res.data.code)
     })
@@ -24,10 +35,14 @@ export default function Home() {
       
         <div className="flex py-8">
             <div className="w-1/2 m-auto">
-            <p className="text-2xl pb-4">Generate a new ticket code</p>
+            <p className="text-2xl pb-8">Generate a new ticket code</p>
+            <div className="pb-16">
+              <p>Check this box if it's for a sorority girl</p><input type='checkbox' onChange={(e) => {setSorority(e.target.checked)}}></input>
+            </div>
             <button className="rounded p-2 bg-blue-600 text-white w-min" onClick={generateCode}><p>Generate</p></button>
+           
             <div className="pt-8">
-                <input type={"text"} disabled={true} className="border bg-gray-50 rounded-lg" value={code} />
+                <input type={"text"} disabled={true} className="border-2 bg-gray-50 rounded-lg p-2" value={code} />
             </div>
             </div>
         </div>

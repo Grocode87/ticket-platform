@@ -27,15 +27,32 @@ const Tickets = ({ code, prices }) => {
 export async function getServerSideProps(context) {
   // check code validity
 
-  let res = await axios.get(
+  let codeValid = await axios.get(
     "https://koachellaubc.com/api/check_code?code=" + context.query.code
   );
 
-  if (res.data?.valid) {
-    res = await axios.get("https://koachellaubc.com/api/get_prices");
-    console.log(res)
-    const prices = res.data.data.sort((first, second) => {
-      return first.id > second.id ? 1 : -1;
+  
+
+  if (codeValid.data?.valid) {
+    let res = await axios.get("https://koachellaubc.com/api/get_prices")
+    console.log(codeValid)
+    let prices = res.data.data
+    if(codeValid.data?.sorority) {
+      prices = prices.filter((ticket) => {
+        return ticket.name == "Sorority"
+      })
+    }
+
+    prices = prices.filter((ticket) => {
+      if(codeValid.data?.sorority) {
+        return ticket.name == "Sorority"
+      } else {
+        return !(ticket.name == "Sorority")
+      }
+    })
+
+    prices = prices.sort((first, second) => {
+        return first.id > second.id ? 1 : -1;
     });
 
 

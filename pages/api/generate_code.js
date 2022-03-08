@@ -4,13 +4,17 @@ import { supabase } from "../../utils/supabaseClient";
 
 
 const handler = async (req, res) => {
+
+  const forSorority = req.query.sorority
+
+  
   // generate 6 digit random code
   const code = generateRandomCode(6);
 
   // add to supabase
   const { data, error } = await supabase
     .from("access_codes")
-    .insert([{ code: code }]);
+    .insert([{ code: code, sorority: forSorority }]);
 
     console.log(data)
     console.log(error)
