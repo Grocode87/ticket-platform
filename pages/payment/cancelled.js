@@ -15,8 +15,8 @@ const Cancelled = () => {
 
       <div className="w-full min-h-screen bg-black text-white ">
         <div className="w-full lg:w-1/2 m-auto">
-          <div className="w-full sm:w-8/12 pt-10">
-            <Image src="/images/header-basic.png" width={800} height={180} />
+        <div className="w-full sm:w-6/12 pt-10">
+            <Image src="/images/header-basic2.png" width={800} height={180} />
           </div>
           <div className="pt-12 text-lg">
             <p className="font-semibold text-2xl pb-4">Payment Cancelled</p>

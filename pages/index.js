@@ -135,8 +135,8 @@ const Home = () => {
                 <p className="text-2xl font-bold pb-3">GET ON THE GUESTLIST</p>
                 <input
                   type="text"
-                  className="bg-gray-200 rounded-xl p-2 text-black"
-                  placeholder="Enter your Access Code"
+                  className="bg-gray-200 rounded-xl p-2 text-black text-center w-64"
+                  placeholder="ENTER YOUR ACCESS CODE"
                   onChange={handleAccessCodeChange}
                 ></input>
                 {codeMsg && (
@@ -144,7 +144,7 @@ const Home = () => {
                 )}
                 <div>
                   <button
-                    className="bg-purple-700 w-min px-4 py-2 text-lg rounded-xl mt-3"
+                    className="bg-purple-700 w-min px-4 py-2 text-lg rounded-xl mt-4 font-bold"
                     onClick={checkValidCode}
                   >
                     {!loading? "CONTINUE" : "LOADING..."}

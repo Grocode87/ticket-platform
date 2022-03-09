@@ -1,18 +1,24 @@
 import axios from "axios";
 import TierListing from "../components/TierListing";
-import Image from 'next/image'
+import Image from "next/image";
+import Head from "next/head";
 
 const Tickets = ({ code, prices }) => {
   return (
     <div className="w-full min-h-screen bg-black text-white">
+      <Head>
+        <title>Koachella 2022</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="w-full md:w-1/2 m-auto pt-10">
-        
         <div className="w-full sm:w-8/12 px-4 sm:px-0">
-        <Image src="/images/header-basic.png" width={800} height={180} />
+          <Image src="/images/header-basic.png" width={800} height={180} />
         </div>
 
-        <p className="text-3xl font-bold pt-14 text-center sm:text-left">TICKETS</p>
-
+        <p className="text-3xl font-bold pt-14 text-center sm:text-left">
+          TICKETS
+        </p>
 
         <div className="px-8 sm:px-0 pb-16">
           {prices.map((price) => {
@@ -31,35 +37,30 @@ export async function getServerSideProps(context) {
     "https://koachellaubc.com/api/check_code?code=" + context.query.code
   );
 
-  
-
   if (codeValid.data?.valid) {
-    let res = await axios.get("https://koachellaubc.com/api/get_prices")
-    console.log(codeValid)
-    let prices = res.data.data
+    let res = await axios.get("https://koachellaubc.com/api/get_prices");
+    console.log(codeValid);
+    let prices = res.data.data;
 
     prices = prices.filter((ticket) => {
-      if(!codeValid.data?.sorority) {
-        return !(ticket.name == "Exclusive Sorority")
+      if (!codeValid.data?.sorority) {
+        return !(ticket.name == "Exclusive Sorority");
       } else {
-        return true
+        return true;
       }
-    })
-
-    prices = prices.sort((first, second) => {
-        return first.id > second.id ? 1 : -1;
     });
 
+    prices = prices.sort((first, second) => {
+      return first.id > second.id ? 1 : -1;
+    });
 
     return {
       props: {
         code: context.query.code,
-        prices: prices
+        prices: prices,
       },
     };
   }
-
-  
 
   return {
     redirect: {

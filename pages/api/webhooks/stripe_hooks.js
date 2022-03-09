@@ -88,11 +88,12 @@ const generateReciept = async (session) => {
   );
   doc.image(receiptTemplate, 0, 0, { width: 620, height: 800 });
 
+  
   doc.text(moment().format("MMMM Do YYYY, h:mm:ss a"), 200, 266);
   doc.text(session.metadata.name, 100, 297);
   doc.text(session.customer_details.email, 100, 327);
 
-  doc.fontSize(20);
+  doc.fontSize(18);
   doc.text(session.metadata.ticketName, 80, 410);
   doc.text("Tax/Fees", 80, 440);
   doc.text("Total", 80, 500);
@@ -100,11 +101,11 @@ const generateReciept = async (session) => {
   doc.font("Helvetica-Bold");
   doc.text(
     "$" + Math.round((session.amount_total / 100 - 1.44) * 100) / 100,
-    420,
+    470,
     410
   );
-  doc.text("$1.44", 420, 440);
-  doc.text("$" + session.amount_total / 100, 420, 510);
+  doc.text("$1.44", 470, 440);
+  doc.text("$" + session.amount_total / 100, 470, 510);
   doc.font("Helvetica");
 
   doc.end();

@@ -3,6 +3,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useContext, useState } from "react";
 import { CartStateContext } from "../context/cart";
 import Image from "next/image";
+import Head from 'next/head';
 
 const Cart = ({ query }) => {
   const { ticketData, accessCode } = useContext(CartStateContext);
@@ -90,6 +91,13 @@ const Cart = ({ query }) => {
 
   return (
     <div className="flex py-8 bg-black text-white">
+      <Head>
+        <title>Koachella 2022</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+
       <div className="w-full px-8 m-auto md:w-1/2 md:px-0">
         <div className="w-full sm:w-8/12">
           <Image src="/images/header-basic.png" width={800} height={180} />
