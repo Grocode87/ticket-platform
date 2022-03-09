@@ -210,24 +210,43 @@ const Home = () => {
               a friend (or 5) and get ready for a night of culture, production
               and atmosphere like no other in the village.
             </p>
+
+            
             <p className="pt-3">
               This year, KOACHΣLLA is set to feature some of the biggest
               Vancouver based artists.
             </p>
             <p className="pt-6 font-bold text-xl">Lineup TBA</p>
+
+            
+
             <p className="pt-6">
               WHEN: March 19th, 7:00pm. Doors close at 8:30pm
             </p>
             <p className="">
               WHERE: 2880 Westbrook Mall, First House on the Left
             </p>
+
+
+           
+
             <p className="pt-6">PLEASE NOTE</p>
-            <ul className="list-disc pl-4">
+            <ul className="list-disc pl-8">
               <li>NO GLASS BOTTLES</li>
               <li>NO BACKPACKS/BAG</li>
               <li>VALID UBC ID REQUIRED FOR ENTRY</li>
               <li>ENTRY SUBJECT TO CAPACITY</li>
             </ul>
+
+            <p className="pt-10 font-bold text-xl">Don't have an access code? </p>
+            <p>Reach out to any of our representatives below:</p>
+           <ul className="list-disc pl-8">
+             <li>Massimo Beltramo (+1 604-365-2999)</li>
+             <li>Arnav Sindhoor (+1 204-996-3444)</li>
+             <li>Santiago Brasil (+1 236-862-4589)</li>
+             <li>Raffi Santos (+1 778-822-0765)</li>
+             <li>Praj Chadha (+1 778-636-1971)</li>
+           </ul>
 
             <p className="pt-8">
               FOLLOW 
@@ -242,7 +261,7 @@ const Home = () => {
                 rel="noreferrer"
                 href="https://www.instagram.com/kappasigmaubc/"
                 target="_blank"
-                className="text-blue-400"
+                className="text-blue-400 "
               > @kappasigmaubc </a>  on instagram for up to
               date event info and updates
             </p>
