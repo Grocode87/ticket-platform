@@ -148,11 +148,11 @@ const Cart = ({ query }) => {
           </div>
           <div className="flex justify-between border-b pb-2">
             <p>Tax/Fees</p>
-            <p className="font-bold">$1.46</p>
+            <p className="font-bold">$1.44</p>
           </div>
           <div className="flex justify-between pt-6 border-b pb-2">
             <p>Total</p>
-            <p className="font-bold">${ticketData.price / 100 + 1.46}</p>
+            <p className="font-bold">${ticketData.price / 100 + 1.44}</p>
           </div>
         </div>
         {errorMsg && <p className="text-red-600 mt-10">{errorMsg}</p>}
