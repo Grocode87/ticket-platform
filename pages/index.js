@@ -238,7 +238,7 @@ const Home = () => {
               <li>ENTRY SUBJECT TO CAPACITY</li>
             </ul>
 
-            <p className="pt-10 font-bold text-xl">Don't have an access code? </p>
+            <p className="pt-10 font-bold text-xl">Dont have an access code? </p>
             <p>Reach out to any of our representatives below:</p>
            <ul className="list-disc pl-8">
              <li>Massimo Beltramo (+1 604-365-2999)</li>
