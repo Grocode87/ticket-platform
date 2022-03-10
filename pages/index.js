@@ -194,7 +194,18 @@ const Home = () => {
                 <Image src="/images/logo-spotify.png" width={20} height={20} />
               </a>
             </div>
-            <p className="pt-3">
+
+            <p className="pt-4 font-bold text-xl">Dont have an access code? </p>
+            <p>Reach out to any of our representatives below:</p>
+           <ul className="list-disc pl-8">
+             <li>Massimo Beltramo <a target="_blank" rel="noreferrer" href="https://www.instagram.com/massimojr_beltramo/" className="text-blue-400">@massimojr_beltramo</a> (+1 604-365-2999)</li>
+             <li>Arnav Sindhoor <a target="_blank" rel="noreferrer" href="https://www.instagram.com/arnavzx/" className="text-blue-400">@arnavzx</a> (+1 204-996-3444)</li>
+             <li>Santiago Brasil <a target="_blank" rel="noreferrer" href="https://www.instagram.com/santiferreirab/" className="text-blue-400">@santiferreirab</a> (+1 236-862-4589)</li>
+             <li>Raffi Santos <a target="_blank" rel="noreferrer" href="https://www.instagram.com/raffisantos/" className="text-blue-400">@raffisantos</a> (+1 778-822-0765)</li>
+             <li>Praj Chadha <a target="_blank" rel="noreferrer" href="https://www.instagram.com/prajwallchadha/" className="text-blue-400">@prajwallchadha</a> (+1 778-636-1971)</li>
+           </ul>
+
+            <p className="pt-8">
               From the house that brought you @boslen, @felixcartal,
               @ericreprid, @graysonrepp and @cotis1k28 to name a few, we are
               stoked to re-introduce the biggest and baddest music showcase
@@ -238,15 +249,6 @@ const Home = () => {
               <li>ENTRY SUBJECT TO CAPACITY</li>
             </ul>
 
-            <p className="pt-10 font-bold text-xl">Dont have an access code? </p>
-            <p>Reach out to any of our representatives below:</p>
-           <ul className="list-disc pl-8">
-             <li>Massimo Beltramo (+1 604-365-2999)</li>
-             <li>Arnav Sindhoor (+1 204-996-3444)</li>
-             <li>Santiago Brasil (+1 236-862-4589)</li>
-             <li>Raffi Santos (+1 778-822-0765)</li>
-             <li>Praj Chadha (+1 778-636-1971)</li>
-           </ul>
 
             <p className="pt-8">
               FOLLOW 
