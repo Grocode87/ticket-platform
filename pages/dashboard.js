@@ -33,9 +33,9 @@ const Dashboard = () => {
     <div className="w-full md:w-1/2 px-8 md:px-0 m-auto pt-10">
       {!loggedIn ? (
         <div>
-          <p>Password</p>
-          <input type="password" onChange={(e) => setPassword(e.target.value)} />
-          <button onClick={login}>Submit</button>
+          <p className="text-xl font-bold pb-8">Password</p>
+          <input type="password" onChange={(e) => setPassword(e.target.value)} className="border-2 shadow-md"/>
+          <div className="pt-4"><button onClick={login} className="bg-purple-700 text-white rounded-md p-2">Submit</button></div>
           {errorMsg && (
               <p className="text-red-600">{errorMsg}</p>
           )}
