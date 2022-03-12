@@ -202,7 +202,7 @@ const Home = () => {
              <li>Arnav Sindhoor <a target="_blank" rel="noreferrer" href="https://www.instagram.com/arnavzx/" className="text-blue-400">@arnavzx</a> (+1 204-996-3444)</li>
              <li>Santiago Brasil <a target="_blank" rel="noreferrer" href="https://www.instagram.com/santiferreirab/" className="text-blue-400">@santiferreirab</a> (+1 236-862-4589)</li>
              <li>Colin Grob <a target="_blank" rel="noreferrer" href="https://www.instagram.com/colin.grob/" className="text-blue-400">@colin.grob</a> (+1 778-822-0765)</li>
-             <li>Praj Chadha <a target="_blank" rel="noreferrer" href="https://www.instagram.com/prajwallchadha/" className="text-blue-400">@prajwallchadha</a> (+1 778-636-1971)</li>
+             <li>Praj Chadha <a target="_blank" rel="noreferrer" href="https://www.instagram.com/prajwallchadha/" className="text-blue-400">@prajwallchadha</a> (+1 250-689-0183)</li>
            </ul>
 
             <p className="pt-8">
