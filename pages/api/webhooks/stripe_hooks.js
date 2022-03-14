@@ -137,7 +137,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
 
     Thank you for your purchase of a Koachella 2022 ticket! \n
 
-    You can find your ticket and receipt attached. \n
+    You can find your ticket attached. \n
 
     Ticket Info: \n
     ${session.metadata.ticketName} x1 \n
@@ -166,7 +166,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
     <span class="LI ng" data-ddnwab="PR_1_0" aria-invalid="spelling">Koachella</span> 2022 ticket! 
     <br>
     <br>
-    <strong>You can find your ticket and receipt attached.</strong> 
+    <strong>You can find your ticket attached.</strong> 
     <br>
     <br>
     <strong>Ticket Info:</strong> 
@@ -202,12 +202,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
         filename: `koachella_ticket.pdf`,
         content: ticketPdf,
         encoding: "base64",
-      },
-      {
-        filename: `purchase_receipt.pdf`,
-        content: receiptPdf,
-        encoding: "base64",
-      },
+      }
     ],
   };
 
