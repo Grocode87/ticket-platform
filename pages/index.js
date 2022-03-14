@@ -227,7 +227,25 @@ const Home = () => {
               This year, KOACHΣLLA is set to feature some of the biggest
               Vancouver based artists.
             </p>
-            <p className="pt-6 font-bold text-xl">Lineup TBA</p>
+
+
+            <div>
+            <p className="pt-6 font-bold text-xl">Lineup</p>
+            <p>YSN FAB</p>
+            <p>ERIC REPRID</p>
+            <p className="pt-3">PARIS PLAYED YOU</p>
+            <p>BRETT BARRON & WESTY</p>
+            <p>COLE JAMES</p>
+            <p>NEMXTI</p>
+            <p>WAKI</p>
+
+            <p className="pt-4 font-bold text-xl">DJ's</p>
+            <p>BIJAN</p>
+            <p>BAZENGA</p>
+            <p>MODI</p>
+
+            <p className="pt-4 font-bold">HOSTED BY OSITA DAVID</p>
+            </div>
 
             
 
