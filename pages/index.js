@@ -239,7 +239,7 @@ const Home = () => {
             <p>NEMXTI</p>
             <p>WAKI</p>
 
-            <p className="pt-4 font-bold text-xl">DJ's</p>
+            <p className="pt-4 font-bold text-xl">DJs</p>
             <p>BIJAN</p>
             <p>BAZENGA</p>
             <p>MODI</p>
