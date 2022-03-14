@@ -13,6 +13,7 @@ export default async function handler(req, res) {
             price: req.body.priceId,
             quantity: 1,
         }],
+        allow_promotion_codes: true,
         metadata: {'accessCode': req.body.accessCode, 'name': req.body.name, 'ticketName': req.body.ticketName},
         customer_email: req.body.email,
         success_url: `${req.headers.origin}/payment/success`,
