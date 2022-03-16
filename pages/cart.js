@@ -152,7 +152,7 @@ const Cart = ({ query }) => {
           </div>
           <div className="flex justify-between pt-6 border-b pb-2">
             <p>Total</p>
-            <p className="font-bold">${ticketData.price / 100 + 1.44}</p>
+            <p className="font-bold">${((parseInt(ticketData.price) + 144) / 100)}</p>
           </div>
         </div>
         {errorMsg && <p className="text-red-600 mt-10">{errorMsg}</p>}
