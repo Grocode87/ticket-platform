@@ -36,7 +36,7 @@ const TicketCode = (props) => {
           </div>
           {!props.used && (
             <button
-              className="text-center mb-8 mx-4 bg-green-800"
+              className="text-center mb-24 mx-4 bg-green-800"
               onClick={handleCheckIn}
             >
               <p className="text-xl p-4 border-2">CHECK IN</p>
