@@ -40,7 +40,7 @@ const generateTicket = async (session, ticket_id) => {
 
   //IMAGE
   const ticketTemplate = await fetchImage(
-    "https://koachellaubc.com/images%2Fticket_template.png"
+    "https://www.ksigubcevents.com/images/ticket_template.png"
   );
   doc.image(ticketTemplate, 0, 0, { width: 620, height: 800 });
   //doc.image("public/images/ticket_template.png", 0, 0, {width: 620, height: 800})
@@ -58,7 +58,7 @@ const generateTicket = async (session, ticket_id) => {
     .fontSize(25)
     .text(session.metadata.ticketName, 2, 355, { width: 620, align: "center" });
   doc.image(
-    generateQRCode("https://koachellaubc.com/ticket/" + ticket_id),
+    generateQRCode("https://ksigubcevents.com/ticket/" + ticket_id),
     184,
     416,
     { width: 260 }
@@ -84,11 +84,10 @@ const generateReciept = async (session) => {
   const doc = new PDFDocument();
 
   const receiptTemplate = await fetchImage(
-    "https://koachellaubc.com/images%2Freceipt_template.png"
+    "https://www.ksigubcevents.com/images%2Freceipt_template.png"
   );
   doc.image(receiptTemplate, 0, 0, { width: 620, height: 800 });
 
-  
   doc.text(moment().format("MMMM Do YYYY, h:mm:ss a"), 200, 266);
   doc.text(session.metadata.name, 100, 297);
   doc.text(session.customer_details.email, 100, 327);
@@ -122,14 +121,14 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
     port: 465,
     host: "smtp.porkbun.com",
     auth: {
-      user: "noreply@koachellaubc.com ",
+      user: "noreply@ksigubcevents.com ",
       pass: "Hunter1?23",
     },
     secure: true,
   });
 
   const mailData = {
-    from: "noreply@koachellaubc.com",
+    from: "noreply@ksigubcevents.com",
     to: toEmail,
     subject: `Order Confirmation/Ticket - Koachella 2022`,
     text: `
@@ -156,7 +155,6 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
 
     This email was sent from an address that cannot accept incoming email. Please do not reply to this message. \n
     `,
-
 
     html: `
     <div id="gmail-:5au" class="gmail-Ar gmail-Au gmail-Ao">
@@ -196,13 +194,13 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
   </div>
 </div>
     
-    `, 
+    `,
     attachments: [
       {
         filename: `koachella_ticket.pdf`,
         content: ticketPdf,
         encoding: "base64",
-      }
+      },
     ],
   };
 
@@ -239,7 +237,12 @@ const fulfillPurchase = async (session) => {
   const ticketPdf = await generateTicket(session, ticket_id);
   const receiptPdf = await generateReciept(session);
 
-  await sendMail(session.customer_details.email, ticketPdf, receiptPdf, session);
+  await sendMail(
+    session.customer_details.email,
+    ticketPdf,
+    receiptPdf,
+    session
+  );
 };
 
 export const config = { api: { bodyParser: false } };
