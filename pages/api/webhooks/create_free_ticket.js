@@ -45,7 +45,11 @@ const generateTicket = async (session, ticket_id) => {
   doc.image(ticketTemplate, 0, 0, { width: 620, height: 800 });
   //doc.image("public/images/ticket_template.png", 0, 0, {width: 620, height: 800})
 
-  doc.fontSize(15).font("Helvetica-Bold").text(ticket_id, 353, 50);
+  doc
+    .fontSize(15)
+    .fillColor("white")
+    .font("Helvetica-Bold")
+    .text(ticket_id, 119, 672);
 
   //'./public/uploads'
   //doc.image("phone-icon.jpg", 65, 260, {width: 50});
@@ -90,23 +94,23 @@ const generateReciept = async (session) => {
   );
   doc.image(receiptTemplate, 0, 0, { width: 620, height: 800 });
   doc.fillColor("white");
-  doc.text(moment().format("MMMM Do YYYY, h:mm:ss a"), 200, 266);
-  doc.text(session.metadata.name, 100, 297);
-  doc.text(session.customer_details.email, 100, 327);
+  doc.text(moment().format("MMMM Do YYYY, h:mm:ss a"), 253, 333);
+  doc.text(session.metadata.name, 165, 355);
+  doc.text(session.customer_details.email, 165, 380);
 
-  doc.fontSize(18);
-  doc.text(session.metadata.ticketName, 80, 410);
-  doc.text("Tax/Fees", 80, 440);
-  doc.text("Total", 80, 500);
+  doc.fontSize(15);
+  doc.text(session.metadata.ticketName, 115, 425);
+  doc.text("Tax/Fees", 115, 450);
+  doc.text("Total", 115, 500);
 
   doc.font("Helvetica-Bold");
   doc.text(
     "$" + Math.round((session.amount_total / 100 - 1.44) * 100) / 100,
-    470,
-    410
+    430,
+    425
   );
-  doc.text("$1.44", 470, 440);
-  doc.text("$" + session.amount_total / 100, 470, 510);
+  doc.text("$1.44", 430, 450);
+  doc.text("$" + session.amount_total / 100, 430, 510);
   doc.font("Helvetica");
 
   doc.end();
@@ -138,7 +142,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
  
      Thank you for your purchase of a Fright at the Mansion 2022 ticket! \n
  
-     You can find your ticket attached. \n
+     You can find your ticket and receipt attached. \n
  
      Ticket Info: \n
      ${session.metadata.ticketName} x1 \n
@@ -217,20 +221,30 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
 const fulfillPurchase = async (session) => {
   // Create ticket id
   const ticket_id = generateRandomCode(12);
+  const accessCode = session.metadata.accessCode;
+
+  // Get access code count from db
+  const codeRes = await supabase
+    .from("access_codes")
+    .select("code, uses, sorority_name")
+    .eq("code", accessCode);
+  const codeData = codeRes.data[0];
+
+  // increment uses of access code in db if access code exists
+  if (codeData) {
+    await supabase
+      .from("access_codes")
+      .update({ uses: codeData.uses + 1 })
+      .eq("code", accessCode);
+  }
 
   // Disable access code in db
-  console.log("disabling access code");
-  const accessCode = session.metadata.accessCode;
-  console.log(session.metadata.accessCode);
-
-  const { res, error } = await supabase
-    .from("access_codes")
-    .update({ valid: false })
-    .match({ code: accessCode });
-
-  console.log("disabled");
-  console.log(res);
-  console.log(error);
+  if (codeData && !codeData.sorority_name) {
+    const { res, error } = await supabase
+      .from("access_codes")
+      .update({ valid: false })
+      .match({ code: accessCode });
+  }
 
   // add ticket to db
   const newTicket = {
@@ -238,8 +252,9 @@ const fulfillPurchase = async (session) => {
     name: session.metadata.ticketName || "",
     customer_name: session.metadata.name || "",
     customer_email: session.customer_details.email || "",
+    sorority: codeData?.sorority_name || "",
   };
-  await supabase.from("tickets").insert([newTicket]);
+  await supabase.from("tickets_halloween").insert([newTicket]);
 
   const ticketPdf = await generateTicket(session, ticket_id);
   const receiptPdf = await generateReciept(session);
@@ -257,8 +272,9 @@ const webhookHandler = async (req, res) => {
     metadata: {
       ticketName: "Fright at the Mansion 2022 Early Bird Ticket",
       name: "Colin Grob",
-      accessCode: "",
+      accessCode: "U9C2W2",
     },
+    amount_total: 999,
   };
 
   await fulfillPurchase(session);

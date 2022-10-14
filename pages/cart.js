@@ -11,6 +11,7 @@ const Cart = ({ query }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [sororityCheck, setSororityCheck] = useState(false);
 
   const [formValid, setFormValid] = useState(true);
   const [errorMsg, setErrorMsg] = useState(true);
@@ -34,6 +35,10 @@ const Cart = ({ query }) => {
     ) {
       setFormValid(false);
       setErrorMsg("Enter a valid email address");
+      return false;
+    } else if (!sororityCheck) {
+      setFormValid(false);
+      setErrorMsg("Please check the checkbox to continue");
       return false;
     } else {
       setFormValid(true);
@@ -156,6 +161,22 @@ const Cart = ({ query }) => {
             </p>
           </div>
         </div>
+        {ticketData.name == "Exclusive Sorority" && (
+          <div className="flex flex-row space-x-3  pt-8">
+            <input
+              type="checkbox"
+              id="sorority"
+              name="sorority"
+              value={sororityCheck}
+              onChange={(e) => setSororityCheck(e.target.checked)}
+            ></input>
+            <p>
+              I understand that I am purchasing a sorority only ticket, and I
+              understand that this ticket will be revoked with no refund if I am
+              not in a sorority
+            </p>
+          </div>
+        )}
         {errorMsg && <p className="text-red-600 mt-10">{errorMsg}</p>}
         <button
           onClick={redirectToCheckout}
