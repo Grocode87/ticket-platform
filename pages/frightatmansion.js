@@ -129,9 +129,6 @@ const FrightAtMansion = () => {
             <div className="text-center">
               <div className="pb-14">
                 <p className="text-2xl font-bold pb-3">GET ON THE GUESTLIST</p>
-                <p className="text text-orange-700 font-bold">
-                  GUESTLIST OPENS AT 4PM PST
-                </p>
 
                 <input
                   type="text"
