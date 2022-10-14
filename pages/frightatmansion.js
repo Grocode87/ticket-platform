@@ -129,6 +129,10 @@ const FrightAtMansion = () => {
             <div className="text-center">
               <div className="pb-14">
                 <p className="text-2xl font-bold pb-3">GET ON THE GUESTLIST</p>
+                <p className="text text-orange-700 font-bold">
+                  GUESTLIST OPENS AT 4PM PST
+                </p>
+                {/**
                 <input
                   type="text"
                   className="bg-gray-200 rounded-xl p-2 text-black text-center w-64"
@@ -146,6 +150,7 @@ const FrightAtMansion = () => {
                     {!loading ? "CONTINUE" : "LOADING..."}
                   </button>
                 </div>
+                 */}
               </div>
 
               <button
@@ -181,6 +186,7 @@ const FrightAtMansion = () => {
               >
                 <Image src="/images/logo-ig.png" width={20} height={20} />
               </a>
+              {/**
               <a
                 target="_blank"
                 rel="noreferrer"
@@ -188,6 +194,7 @@ const FrightAtMansion = () => {
               >
                 <Image src="/images/logo-fb.png" width={20} height={20} />
               </a>
+               */}
             </div>
             <p className="pt-4 font-bold text-xl">Dont have an access code? </p>
             <p>Reach out to any of the brothers below:</p>
