@@ -118,6 +118,7 @@ const FrightAtMansion = () => {
             {/** TOP */}
             <div className="text-3xl p-4 pt-20 sm:p-20">
               <Image
+                priority
                 src="/images/header_rounded.png"
                 width={800}
                 height={270}
@@ -189,7 +190,7 @@ const FrightAtMansion = () => {
               </a>
             </div>
             <p className="pt-4 font-bold text-xl">Dont have an access code? </p>
-            <p>Reach out to any of our representatives below:</p>
+            <p>Reach out to any of the brothers below:</p>
             <ul className="list-disc pl-8">
               <li>
                 Arnav Sindhoor{" "}
@@ -200,21 +201,43 @@ const FrightAtMansion = () => {
                   className="text-blue-400"
                 >
                   @arnavzx
-                </a>{" "}
-                (+1 204-996-3444)
+                </a>
               </li>
 
               <li>
-                Praj Chadha{" "}
+                Keith Tan{" "}
                 <a
                   target="_blank"
                   rel="noreferrer"
-                  href="https://www.instagram.com/prajwallchadha/"
+                  href="https://www.instagram.com/keithtanxj/"
                   className="text-blue-400"
                 >
-                  @prajwallchadha
-                </a>{" "}
-                (+1 250-689-0183)
+                  @keithtanxj
+                </a>
+              </li>
+
+              <li>
+                Dodi Lertpun{" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.instagram.com/asianpapii/"
+                  className="text-blue-400"
+                >
+                  @asianpapii
+                </a>
+              </li>
+
+              <li>
+                Kirill Lazerev{" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.instagram.com/klazarev_/"
+                  className="text-blue-400"
+                >
+                  @klazarev_
+                </a>
               </li>
             </ul>
             <p className="pt-8">
@@ -250,8 +273,8 @@ const FrightAtMansion = () => {
             <p className="pt-6">PLEASE NOTE</p>
             <ul className="list-disc pl-8">
               <li>Valid UBC ID required for entry</li>
-              <li>Haunted hallway from 10PM - 12PM</li>
-              <li>No glass bottles/bags</li>
+              <li>Must be on guestlist to enter</li>
+              <li>No bags, backpacks, or glass bottles</li>
               <li>Haunted hallway from 10PM - 12PM</li>
             </ul>
 

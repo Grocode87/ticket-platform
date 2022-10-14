@@ -13,7 +13,12 @@ const Tickets = ({ code, prices }) => {
       </Head>
       <div className="w-full md:w-1/2 m-auto pt-10">
         <div className="w-full sm:w-8/12 px-4 sm:px-0">
-          <Image src="/images/header_flat_basic.png" width={800} height={250} />
+          <Image
+            priority
+            src="/images/header_flat_basic.png"
+            width={800}
+            height={250}
+          />
         </div>
 
         <p className="text-3xl font-bold pt-14 text-center sm:text-left">

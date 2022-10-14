@@ -138,7 +138,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
     to: toEmail,
     subject: `Order Confirmation/Ticket - Fright at the Mansion 2022`,
     text: `
-     Hello ${session.metadata.name}}:
+     Hello ${session.metadata.name}},
  
      Thank you for your purchase of a Fright at the Mansion 2022 ticket! \n
  
@@ -164,7 +164,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
 
     html: `
      <div id="gmail-:5au" class="gmail-Ar gmail-Au gmail-Ao">
-   <div id="gmail-:55r" class="gmail-Am gmail-Al editable gmail-LW-avf gmail-tS-tW gmail-tS-tY" style="direction: ltr; min-height: 590px;" tabindex="1" role="textbox" aria-label="Message Body" aria-multiline="true">Hello ${session.metadata.name}: 
+   <div id="gmail-:55r" class="gmail-Am gmail-Al editable gmail-LW-avf gmail-tS-tW gmail-tS-tY" style="direction: ltr; min-height: 590px;" tabindex="1" role="textbox" aria-label="Message Body" aria-multiline="true">Hello ${session.metadata.name}, 
      <br>
      <br>Thank you for your purchase of a 
      <span class="LI ng" data-ddnwab="PR_1_0" aria-invalid="spelling">Fright at the Mansion</span> 2022 ticket! 
@@ -177,7 +177,6 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      <br>
      ${session.metadata.ticketName} x1 
      <br>${session.metadata.name}
-     <br>
      <br>
      <strong>Event Details:</strong> 
      <br>9:00PM, Saturday, October 29th, 2022 

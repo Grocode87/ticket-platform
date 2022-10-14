@@ -102,7 +102,12 @@ const Cart = ({ query }) => {
 
       <div className="w-full px-8 m-auto md:w-1/2 md:px-0">
         <div className="w-full sm:w-8/12">
-          <Image src="/images/header_flat_basic.png" width={800} height={250} />
+          <Image
+            src="/images/header_flat_basic.png"
+            priority
+            width={800}
+            height={250}
+          />
         </div>
         <p className="text-3xl font-bold pt-8">Checkout</p>
 
@@ -161,13 +166,15 @@ const Cart = ({ query }) => {
         </div>
         {ticketData.name == "Exclusive Sorority" && (
           <div className="flex flex-row space-x-3  pt-8">
-            <input
-              type="checkbox"
-              id="sorority"
-              name="sorority"
-              value={sororityCheck}
-              onChange={(e) => setSororityCheck(e.target.checked)}
-            ></input>
+            <div className="flex-shrink-0">
+              <input
+                type="checkbox"
+                id="sorority"
+                name="sorority"
+                value={sororityCheck}
+                onChange={(e) => setSororityCheck(e.target.checked)}
+              ></input>
+            </div>
             <p>
               I understand that I am purchasing a sorority only ticket, and I
               understand that this ticket will be revoked with no refund if I am
