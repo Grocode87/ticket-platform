@@ -51,17 +51,19 @@ const generateTicket = async (session, ticket_id) => {
   //doc.image("phone-icon.jpg", 65, 260, {width: 50});
 
   doc
-    .fontSize(40)
+    .fontSize(30)
+    .fillColor("white")
     .font("Helvetica-Bold")
-    .text(session.metadata.name, 2, 300, { width: 620, align: "center" });
+    .text(session.metadata.name, 2, 270, { width: 610, align: "center" });
   doc
-    .fontSize(25)
-    .text(session.metadata.ticketName, 2, 355, { width: 620, align: "center" });
+    .fontSize(17)
+    .fillColor("white")
+    .text(session.metadata.ticketName, 2, 305, { width: 610, align: "center" });
   doc.image(
     generateQRCode("https://www.ksigubcevents.com/ticket/" + ticket_id),
-    184,
-    416,
-    { width: 260 }
+    186,
+    335,
+    { width: 245 }
   );
 
   doc.end();
@@ -87,7 +89,7 @@ const generateReciept = async (session) => {
     "https://www.ksigubcevents.com/images%2Freceipt_template.png"
   );
   doc.image(receiptTemplate, 0, 0, { width: 620, height: 800 });
-
+  doc.fillColor("white");
   doc.text(moment().format("MMMM Do YYYY, h:mm:ss a"), 200, 266);
   doc.text(session.metadata.name, 100, 297);
   doc.text(session.customer_details.email, 100, 327);
@@ -197,8 +199,13 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      `,
     attachments: [
       {
-        filename: `frightatmansionticket.pdf`,
+        filename: `frightatmansion-ticket.pdf`,
         content: ticketPdf,
+        encoding: "base64",
+      },
+      {
+        filename: `frightatmansion-receipt.pdf`,
+        content: receiptPdf,
         encoding: "base64",
       },
     ],
