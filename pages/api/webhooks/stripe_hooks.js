@@ -142,7 +142,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
  
      Thank you for your purchase of a Fright at the Mansion 2022 ticket! \n
  
-     You can find your ticket and receipt attached. \n
+     You can find your ticket attached. \n
  
      Ticket Info: \n
      ${session.metadata.ticketName} x1 \n
@@ -205,11 +205,6 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
       {
         filename: `frightatmansion-ticket.pdf`,
         content: ticketPdf,
-        encoding: "base64",
-      },
-      {
-        filename: `frightatmansion-receipt.pdf`,
-        content: receiptPdf,
         encoding: "base64",
       },
     ],
