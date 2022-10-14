@@ -186,15 +186,14 @@ const FrightAtMansion = () => {
               >
                 <Image src="/images/logo-ig.png" width={20} height={20} />
               </a>
-              {/**
+
               <a
                 target="_blank"
                 rel="noreferrer"
-                href="https://www.facebook.com/events/652480636017190"
+                href="https://www.facebook.com/events/764365438000886"
               >
                 <Image src="/images/logo-fb.png" width={20} height={20} />
               </a>
-               */}
             </div>
             <p className="pt-4 font-bold text-xl">Dont have an access code? </p>
             <p>Reach out to any of the brothers below:</p>
