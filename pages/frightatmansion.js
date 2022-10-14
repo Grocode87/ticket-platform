@@ -132,7 +132,7 @@ const FrightAtMansion = () => {
                 <p className="text text-orange-700 font-bold">
                   GUESTLIST OPENS AT 4PM PST
                 </p>
-                {/**
+
                 <input
                   type="text"
                   className="bg-gray-200 rounded-xl p-2 text-black text-center w-64"
@@ -150,7 +150,6 @@ const FrightAtMansion = () => {
                     {!loading ? "CONTINUE" : "LOADING..."}
                   </button>
                 </div>
-                 */}
               </div>
 
               <button
