@@ -140,7 +140,7 @@ const FrightAtMansion = () => {
                 )}
                 <div>
                   <button
-                    className="bg-purple-700 w-min px-4 py-2 text-lg rounded-xl mt-4 font-bold"
+                    className="bg-orange-500 w-min px-4 py-2 text-lg rounded-xl mt-4 font-bold"
                     onClick={checkValidCode}
                   >
                     {!loading ? "CONTINUE" : "LOADING..."}

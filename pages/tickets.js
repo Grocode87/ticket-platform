@@ -5,7 +5,7 @@ import Head from "next/head";
 
 const Tickets = ({ code, prices }) => {
   return (
-    <div className="w-full min-h-screen bg-black text-white">
+    <div className="w-full min-h-screen bg-slate-900 text-white">
       <Head>
         <title>Fright at the Mansion 2022</title>
         <meta name="description" content="" />

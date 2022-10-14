@@ -36,7 +36,7 @@ const Cart = ({ query }) => {
       setFormValid(false);
       setErrorMsg("Enter a valid email address");
       return false;
-    } else if (!sororityCheck) {
+    } else if (ticketData.name == "Exclusive Sorority" && !sororityCheck) {
       setFormValid(false);
       setErrorMsg("Please check the checkbox to continue");
       return false;
@@ -93,7 +93,7 @@ const Cart = ({ query }) => {
   };
 
   return (
-    <div className="flex py-8 bg-black text-white">
+    <div className="flex py-8 bg-slate-900 text-white">
       <Head>
         <title>Fright at the Mansion 2022</title>
         <meta name="description" content="" />
