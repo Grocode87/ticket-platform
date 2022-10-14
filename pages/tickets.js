@@ -34,11 +34,11 @@ export async function getServerSideProps(context) {
   // check code validity
 
   let codeValid = await axios.get(
-    "http://localhost:3000/api/check_code?code=" + context.query.code
+    "https://ksigubcevents.com/api/check_code?code=" + context.query.code
   );
 
   if (codeValid.data?.valid) {
-    let res = await axios.get("http://localhost:3000/api/get_prices");
+    let res = await axios.get("https://ksigubcevents.com/api/get_prices");
     console.log(codeValid);
     let prices = res.data.data;
 

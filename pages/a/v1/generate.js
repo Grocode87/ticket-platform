@@ -11,7 +11,7 @@ export default function Home() {
     let sororityValid = false;
 
     const { data, error } = await axios.get(
-      "http://localhost:3000/api/get_prices"
+      "https://ksigubcevents.com/api/get_prices"
     );
 
     console.log(data);
@@ -24,7 +24,7 @@ export default function Home() {
     });
 
     const codeData = await axios.get(
-      "http://localhost:3000/api/generate_code?sorority=" +
+      "https://ksigubcevents.com/api/generate_code?sorority=" +
         (sororityValid ? sorority : false)
     );
 

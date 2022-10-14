@@ -46,13 +46,13 @@ const Cart = ({ query }) => {
     // CHECK TO MAKE SURE ACCESS CODE IS STILL VALID + TICKET IS AVALIABLE
     setLoading(true);
     let codeValid = await axios.get(
-      "http://localhost:3000/api/check_code?code=" + accessCode
+      "https://ksigubcevents.com/api/check_code?code=" + accessCode
     );
 
     let stillValid = true;
     if (codeValid.data?.valid) {
       console.log("code valid");
-      let res = await axios.get("http://localhost:3000/api/get_prices");
+      let res = await axios.get("https://ksigubcevents.com/api/get_prices");
       let prices = res.data.data;
       console.log(prices);
       await prices.forEach((price) => {
