@@ -16,7 +16,7 @@ const TicketCode = (props) => {
 
   return (
     <div>
-      {/** */}
+      {/** 
       {!checkedIn ? (
         <div>
           {props.valid ? (
@@ -68,6 +68,7 @@ const TicketCode = (props) => {
           </div>
         </div>
       )}
+      */}
     </div>
   );
 };

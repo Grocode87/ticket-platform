@@ -178,6 +178,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      ${session.metadata.ticketName} x1 
      <br>${session.metadata.name}
      <br>
+     <br>
      <strong>Event Details:</strong> 
      <br>9:00PM, Saturday, October 29th, 2022 
      <br>2880 Wesbrook Mall, First House on the Left 
