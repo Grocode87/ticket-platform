@@ -10,9 +10,7 @@ export default function Home() {
   const generateCode = async () => {
     let sororityValid = false;
 
-    const { data, error } = await axios.get(
-      "https://ksigubcevents.com/api/get_prices"
-    );
+    const { data, error } = await axios.get("/api/get_prices");
 
     console.log(data);
 
@@ -24,8 +22,7 @@ export default function Home() {
     });
 
     const codeData = await axios.get(
-      "https://ksigubcevents.com/api/generate_code?sorority=" +
-        (sororityValid ? sorority : false)
+      "/api/generate_code?sorority=" + (sororityValid ? sorority : false)
     );
 
     setCode(codeData.data.code);
@@ -33,7 +30,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Koachella UBC</title>
+        <title>Fright at the Mansion UBC</title>
         <meta name="description" content="Koachella UBC" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -41,6 +38,7 @@ export default function Home() {
       <div className="flex py-8">
         <div className="w-1/2 m-auto">
           <p className="text-2xl pb-8">Generate a new ticket code</p>
+          {/**
           <div className="pb-16">
             <p>Check this box if the code for a sorority girl</p>
             <input
@@ -50,6 +48,7 @@ export default function Home() {
               }}
             ></input>
           </div>
+           */}
           <button
             className="rounded p-2 bg-blue-600 text-white w-min"
             onClick={generateCode}
