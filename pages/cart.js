@@ -3,7 +3,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useContext, useState } from "react";
 import { CartStateContext } from "../context/cart";
 import Image from "next/image";
-import Head from 'next/head';
+import Head from "next/head";
 
 const Cart = ({ query }) => {
   const { ticketData, accessCode } = useContext(CartStateContext);
@@ -46,28 +46,28 @@ const Cart = ({ query }) => {
     // CHECK TO MAKE SURE ACCESS CODE IS STILL VALID + TICKET IS AVALIABLE
     setLoading(true);
     let codeValid = await axios.get(
-      "https://koachellaubc.com/api/check_code?code=" + accessCode
+      "http://localhost:3000/api/check_code?code=" + accessCode
     );
-    
-    let stillValid = true
+
+    let stillValid = true;
     if (codeValid.data?.valid) {
-      console.log("code valid")
-      let res = await axios.get("https://koachellaubc.com/api/get_prices");
+      console.log("code valid");
+      let res = await axios.get("http://localhost:3000/api/get_prices");
       let prices = res.data.data;
-      console.log(prices)
+      console.log(prices);
       await prices.forEach((price) => {
         if (price.name == ticketData.name) {
           if (!price.active) {
             setErrorMsg("The ticket in your cart is no longer avaliable");
-            stillValid = false
+            stillValid = false;
           }
         }
       });
     } else {
       setErrorMsg("Invalid access code");
-      stillValid = false
+      stillValid = false;
     }
-    
+
     if (stillValid && checkFormValid()) {
       const {
         data: { id },
@@ -76,7 +76,7 @@ const Cart = ({ query }) => {
         email: email,
         priceId: ticketData.price_id,
         accessCode: accessCode,
-        ticketName: "Koachella 2022 " + ticketData.name + " Ticket",
+        ticketName: "Fright at The Mansion 2022 " + ticketData.name + " Ticket",
       });
 
       const stripe = await loadStripe(
@@ -92,15 +92,14 @@ const Cart = ({ query }) => {
   return (
     <div className="flex py-8 bg-black text-white">
       <Head>
-        <title>Koachella 2022</title>
+        <title>Fright at the Mansion 2022</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-
       <div className="w-full px-8 m-auto md:w-1/2 md:px-0">
         <div className="w-full sm:w-8/12">
-          <Image src="/images/header-basic.png" width={800} height={180} />
+          <Image src="/images/header_flat_basic.png" width={800} height={250} />
         </div>
         <p className="text-3xl font-bold pt-8">Checkout</p>
 
@@ -143,22 +142,24 @@ const Cart = ({ query }) => {
         <p className="text-xl font-semibold pt-12 pb-2">Cart</p>
         <div className="flex flex-col">
           <div className="flex justify-between border-b pb-2">
-            <p>Koachella 2022 {ticketData.name} Ticket x 1</p>
+            <p>Fright at the Mansion 2022 {ticketData.name} Ticket x 1</p>
             <p className="font-bold">${ticketData.price / 100}</p>
           </div>
-          <div className="flex justify-between border-b pb-2">
+          <div className="flex justify-between border-b pb-2 pt-2">
             <p>Tax/Fees</p>
             <p className="font-bold">$1.44</p>
           </div>
           <div className="flex justify-between pt-6 border-b pb-2">
             <p>Total</p>
-            <p className="font-bold">${((parseInt(ticketData.price) + 144) / 100)}</p>
+            <p className="font-bold">
+              ${(parseInt(ticketData.price) + 144) / 100}
+            </p>
           </div>
         </div>
         {errorMsg && <p className="text-red-600 mt-10">{errorMsg}</p>}
         <button
           onClick={redirectToCheckout}
-          className={"p-2 rounded-lg shadow-md bg-purple-700 text-white mt-8"}
+          className={"p-2 rounded-lg shadow-md bg-orange-500 text-white mt-8"}
         >
           {!loading ? "Continue to Payment" : "Loading..."}
         </button>

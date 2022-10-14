@@ -50,7 +50,6 @@ const Home = () => {
   const router = useRouter();
 
   const bottom = useRef(null);
-  const videoRef = useRef(null);
 
   const handleAccessCodeChange = (e) => {
     setCode(e.target.value);
@@ -58,22 +57,22 @@ const Home = () => {
 
   const checkValidCode = () => {
     console.log("checking...");
-    setLoading(true)
+    setLoading(true);
     if (!code || code.length < 2) {
       setCodeMsg("Invalid code");
-      setLoading(false)
+      setLoading(false);
       return;
     }
     axios.get("/api/check_code?code=" + code).then((res) => {
       console.log("checked");
       if (!res.data.valid) {
         setCodeMsg("Invalid code");
-        setLoading(false)
+        setLoading(false);
       } else {
         setCodeMsg("");
         setAccessCode(dispatch, code);
         router.push({ pathname: "/tickets", query: { code: code } });
-        setLoading(false)
+        setLoading(false);
       }
     });
   };
@@ -96,37 +95,33 @@ const Home = () => {
     };
 
     setOnMobile(window.mobileCheck());
-    videoRef.current.play();
   }, []);
 
   return (
     <>
       <Head>
-        <title>Koachella 2022</title>
+        <title>Fright at the Mansion</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="object-cover w-full h-full fixed bg-black -z-50"></div>
-      <video
-        ref={videoRef}
-        autoPlay={true}
-        loop={true}
-        controls={false}
-        playsInline
-        muted
+      <div className="object-cover w-full h-full fixed bg-slate-900 -z-50"></div>
+      <img
+        src="/videos/scarybg.gif"
         className="object-cover w-full h-full absolute -z-10 bg-black blur-md"
-        src={
-          onMobile ? "/videos/background-mobile.mp4" : "/videos/background.mp4"
-        }
-      ></video>
+      />
+
       <div className="w-full min-h-screen">
-        <div className="m-auto w-full lg:w-5/12 min-h-screen bg-black bg-opacity-50 text-white">
+        <div className="m-auto w-full lg:w-5/12 min-h-screen max-h-screen bg-black bg-opacity-50 text-white">
           {/** BASIC INFO*/}
           <div className="min-h-screen flex flex-col justify-between">
             {/** TOP */}
-            <div className="text-3xl p-10 pt-20 sm:p-20">
-              <Image src="/images/header-new2.png" width={800} height={270} />
+            <div className="text-3xl p-4 pt-20 sm:p-20">
+              <Image
+                src="/images/header_rounded.png"
+                width={800}
+                height={270}
+              />
             </div>
 
             {/** BOTTOM */}
@@ -147,7 +142,7 @@ const Home = () => {
                     className="bg-purple-700 w-min px-4 py-2 text-lg rounded-xl mt-4 font-bold"
                     onClick={checkValidCode}
                   >
-                    {!loading? "CONTINUE" : "LOADING..."}
+                    {!loading ? "CONTINUE" : "LOADING..."}
                   </button>
                 </div>
               </div>
@@ -174,118 +169,105 @@ const Home = () => {
           {/**BELOW FIRST PAGE DETAILS*/}
           <div className="px-8 py-8">
             <div ref={bottom} />
-            <p className="text-2xl font-bold list">KOACHΣLLA 2022</p>
+            <p className="text-2xl font-bold list">
+              Fright at the Mansion 2022
+            </p>
             <div className="flex space-x-2 pt-2">
               <a
                 rel="noreferrer"
-                href="https://www.instagram.com/koachellaubc/"
+                href="https://www.instagram.com/p/Cjn3Qy1J5gr/"
                 target="_blank"
               >
                 <Image src="/images/logo-ig.png" width={20} height={20} />
               </a>
-              <a target="_blank" rel="noreferrer" href="https://www.facebook.com/events/652480636017190">
-                <Image src="/images/logo-fb.png" width={20} height={20} />
-              </a>
               <a
                 target="_blank"
                 rel="noreferrer"
-                href="https://open.spotify.com/playlist/6ar8k0DtuSOejdYLKLjdWS?si=ZkL7cWpaQQGxc6e1aFUzHA&nd=1&utm_medium=organic&_branch_referrer=H4sIAAAAAAAAA72N3wqCMByFn2ZeampYBBKCWJAQIiF1E7%2B2mdO1jf2B7OlbQa8QnIvD%2Bfg4g7XKbKLIKGlZP4egVMiZmKKt0pI4bHOpqAhQsuwd51eneT58FJQWKKl8Pjj82Vg%2B%2FKQ4zJwZ62sGej0tSuvaIx3JuT7UI%2BlalFaGobS8TPUKdwqaZvfEGY2hOr32xfcMOL8Bnv5yiJJMEE%2FjoKdgnaa51HcQDL8B91YitR0BAAA%3D&product=open&%24full_url=https%3A%2F%2Fopen.spotify.com%2Fplaylist%2F6ar8k0DtuSOejdYLKLjdWS%3Fsi%3DZkL7cWpaQQGxc6e1aFUzHA&feature=organic&_branch_match_id=1029543886602822366"
+                href="https://www.facebook.com/events/652480636017190"
               >
-                <Image src="/images/logo-spotify.png" width={20} height={20} />
+                <Image src="/images/logo-fb.png" width={20} height={20} />
               </a>
             </div>
-
             <p className="pt-4 font-bold text-xl">Dont have an access code? </p>
             <p>Reach out to any of our representatives below:</p>
-           <ul className="list-disc pl-8">
-             <li>Massimo Beltramo <a target="_blank" rel="noreferrer" href="https://www.instagram.com/massimojr_beltramo/" className="text-blue-400">@massimojr_beltramo</a> (+1 604-365-2999)</li>
-             <li>Arnav Sindhoor <a target="_blank" rel="noreferrer" href="https://www.instagram.com/arnavzx/" className="text-blue-400">@arnavzx</a> (+1 204-996-3444)</li>
-             <li>Santiago Brasil <a target="_blank" rel="noreferrer" href="https://www.instagram.com/santiferreirab/" className="text-blue-400">@santiferreirab</a> (+1 236-862-4589)</li>
-             <li>Colin Grob <a target="_blank" rel="noreferrer" href="https://www.instagram.com/colin.grob/" className="text-blue-400">@colin.grob</a> (+1 778-822-0765)</li>
-             <li>Praj Chadha <a target="_blank" rel="noreferrer" href="https://www.instagram.com/prajwallchadha/" className="text-blue-400">@prajwallchadha</a> (+1 250-689-0183)</li>
-           </ul>
+            <ul className="list-disc pl-8">
+              <li>
+                Arnav Sindhoor{" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.instagram.com/arnavzx/"
+                  className="text-blue-400"
+                >
+                  @arnavzx
+                </a>{" "}
+                (+1 204-996-3444)
+              </li>
 
+              <li>
+                Praj Chadha{" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.instagram.com/prajwallchadha/"
+                  className="text-blue-400"
+                >
+                  @prajwallchadha
+                </a>{" "}
+                (+1 250-689-0183)
+              </li>
+            </ul>
             <p className="pt-8">
-              From the house that brought you @boslen, @felixcartal,
-              @ericreprid, @graysonrepp and @cotis1k28 to name a few, we are
-              stoked to re-introduce the biggest and baddest music showcase
-              after a 2 year hietus.
+              From the house that brought you Koachella, Bora Bora, Underground
+              and many other iconic events, we present to you - Fright at the
+              Mansion 🎃🎃
             </p>
             <p className="pt-3">
-              The Brothers of Kappa Sigma officially present to you, KOACHΣLLA{" "}
+              This Halloween, we’re pulling out all the stops to make it a night
+              full of thrills, chills, and fear - Make your way to the first
+              house on the left and enter through our haunted hallway (👻 patent
+              pending) to get to the party.
             </p>
-            
             <p className="pt-3">
-              Replicating the energy of a three-day festival to a night of frat
-              extravagance. Flower crowns and dream catchers recommended. Bring
-              a friend (or 5) and get ready for a night of culture, production
-              and atmosphere like no other in the village.
+              Then, enjoy an exhilarating night of music and fun on 2
+              simultaneous dance floors. Complete with smoke, lasers and special
+              guests.
             </p>
-
-            
             <p className="pt-3">
-              This year, KOACHΣLLA is set to feature some of the biggest
-              Vancouver based artists.
+              Put on your best Halloween outfits, bring your homies and get
+              ready to have a spooktacular time - if you dare 👹
             </p>
-
-
-            <div>
-            <p className="pt-6 font-bold text-xl">Lineup</p>
-            <p>YSN FAB</p>
-            <p>ERIC REPRID</p>
-            <p className="pt-3">PARIS PLAYED YOU</p>
-            <p>BRETT BARRON & WESTY</p>
-            <p>COLE JAMES</p>
-            <p>NEMXTI</p>
-            <p>WAKI</p>
-
-            <p className="pt-4 font-bold text-xl">DJs</p>
-            <p>BIJAN</p>
-            <p>BAZENGA</p>
-            <p>MODI</p>
-
-            <p className="pt-4 font-bold">HOSTED BY OSITA DAVID</p>
-            </div>
-
-            
-
-            <p className="pt-6">
-              WHEN: March 19th, 7:00pm. Doors close at 8:30pm
-            </p>
+            <p className="pt-3">PS: Yes it’s a real haunted hallway 👻👻👀</p>
+            <p className="pt-6">WHEN: Saturday, October 29th, 9:00pm.</p>
             <p className="">
               WHERE: 2880 Westbrook Mall, First House on the Left
             </p>
-
-
-           
+            <p>
+              SAFETY: If at any point you need any help, go to a person wearing
+              KΣ letters and say “COBALT” to get immediate assistance.
+            </p>
 
             <p className="pt-6">PLEASE NOTE</p>
             <ul className="list-disc pl-8">
-              <li>NO GLASS BOTTLES</li>
-              <li>NO BACKPACKS/BAG</li>
-              <li>VALID UBC ID REQUIRED FOR ENTRY</li>
-              <li>ENTRY SUBJECT TO CAPACITY</li>
+              <li>Valid UBC ID required for entry</li>
+              <li>Haunted hallway from 10PM - 12PM</li>
+              <li>No glass bottles/bags</li>
+              <li>Haunted hallway from 10PM - 12PM</li>
             </ul>
 
-
             <p className="pt-8">
-              FOLLOW 
-              <a
-                rel="noreferrer"
-                href="https://www.instagram.com/koachellaubc/"
-                target="_blank"
-                className="text-blue-400"
-              > @koachellaubc </a> 
-              and 
+              FOLLOW
               <a
                 rel="noreferrer"
                 href="https://www.instagram.com/kappasigmaubc/"
                 target="_blank"
                 className="text-blue-400 "
-              > @kappasigmaubc </a>  on instagram for up to
-              date event info and updates
+              >
+                {" "}
+                @kappasigmaubc{" "}
+              </a>{" "}
+              on instagram for up to date event info and updates
             </p>
-
           </div>
         </div>
       </div>

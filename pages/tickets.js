@@ -7,13 +7,13 @@ const Tickets = ({ code, prices }) => {
   return (
     <div className="w-full min-h-screen bg-black text-white">
       <Head>
-        <title>Koachella 2022</title>
+        <title>Fright at the Mansion 2022</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="w-full md:w-1/2 m-auto pt-10">
         <div className="w-full sm:w-8/12 px-4 sm:px-0">
-          <Image src="/images/header-basic.png" width={800} height={180} />
+          <Image src="/images/header_flat_basic.png" width={800} height={250} />
         </div>
 
         <p className="text-3xl font-bold pt-14 text-center sm:text-left">
@@ -34,11 +34,11 @@ export async function getServerSideProps(context) {
   // check code validity
 
   let codeValid = await axios.get(
-    "https://koachellaubc.com/api/check_code?code=" + context.query.code
+    "http://localhost:3000/api/check_code?code=" + context.query.code
   );
 
   if (codeValid.data?.valid) {
-    let res = await axios.get("https://koachellaubc.com/api/get_prices");
+    let res = await axios.get("http://localhost:3000/api/get_prices");
     console.log(codeValid);
     let prices = res.data.data;
 
@@ -50,6 +50,16 @@ export async function getServerSideProps(context) {
       }
     });
 
+    // add sorority name to sorority ticket
+    if (codeValid.data?.sorority) {
+      prices = prices.map((ticket) => {
+        if (ticket.name == "Exclusive Sorority") {
+          ticket = { ...ticket, sorority_name: codeValid.data?.sorority_name };
+        }
+        return ticket;
+      });
+    }
+
     prices = prices.sort((first, second) => {
       return first.id > second.id ? 1 : -1;
     });
@@ -58,6 +68,7 @@ export async function getServerSideProps(context) {
       props: {
         code: context.query.code,
         prices: prices,
+        sorority: codeValid.data.sorority_name,
       },
     };
   }
