@@ -22,7 +22,12 @@ const TierListing = ({ data }) => {
         <p className="font-bold text-xl">{name} Ticket</p>
         {sorority_name && <p className="">{sorority_name}</p>}
         {sold_out ? (
-          <p className="text-red-600 font-bold pt-3">SOLD OUT</p>
+          <div className="flex flex-row space-x-4">
+            <p className="font-bold pt-3 line-through">
+              ${parseInt(price) / 100}
+            </p>
+            <p className="text-red-600 font-bold pt-3">SOLD OUT</p>
+          </div>
         ) : (
           <p className="font-bold pt-3">${parseInt(price) / 100}</p>
         )}
