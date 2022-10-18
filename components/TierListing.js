@@ -21,7 +21,9 @@ const TierListing = ({ data }) => {
         <p className="">Fright at the Mansion 2022</p>
         <p className="font-bold text-xl">{name} Ticket</p>
         {name == "Last Minute" && (
-          <p className="text-orange-500">Available October 26th @12:00PM</p>
+          <p className="text-orange-500 pt-2">
+            Available October 26th @12:00PM
+          </p>
         )}
         {sorority_name && <p className="">{sorority_name}</p>}
         {sold_out ? (
@@ -32,7 +34,11 @@ const TierListing = ({ data }) => {
             <p className="text-red-600 font-bold pt-3">SOLD OUT</p>
           </div>
         ) : (
-          <p className="font-bold pt-3">${parseInt(price) / 100}</p>
+          <div>
+            {price && (
+              <p className="font-bold pt-3">${parseInt(price) / 100}</p>
+            )}
+          </div>
         )}
       </div>
       <div className="whitespace-nowrap">
