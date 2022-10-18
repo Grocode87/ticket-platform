@@ -47,6 +47,20 @@ export async function getServerSideProps(context) {
     console.log(codeValid);
     let prices = res.data.data;
 
+    prices = prices.sort((first, second) => {
+      return first.id > second.id ? 1 : -1;
+    });
+
+    if (prices[0].name == "Exclusive Sorority") {
+      const first = prices[0];
+      prices = prices.slice(1);
+
+      prices = prices.reverse();
+      prices.unshift(first);
+    } else {
+      prices = prices.reverse();
+    }
+
     prices = prices.filter((ticket) => {
       if (!codeValid.data?.sorority) {
         return !(ticket.name == "Exclusive Sorority");
@@ -64,10 +78,6 @@ export async function getServerSideProps(context) {
         return ticket;
       });
     }
-
-    prices = prices.sort((first, second) => {
-      return first.id > second.id ? 1 : -1;
-    });
 
     return {
       props: {
