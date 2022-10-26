@@ -20,11 +20,7 @@ const TierListing = ({ data }) => {
       <div className="pr-4 text-left">
         <p className="">Fright at the Mansion 2022</p>
         <p className="font-bold text-xl">{name} Ticket</p>
-        {name == "Last Minute" && (
-          <p className="text-orange-500 pt-2">
-            Available October 26th @12:00PM
-          </p>
-        )}
+
         {sorority_name && <p className="">{sorority_name}</p>}
         {sold_out ? (
           <div className="flex flex-row space-x-4">
