@@ -13,8 +13,6 @@
  *     - Thank you for your purchase
  */
 
-import initStripe from "stripe";
-import Cors from "micro-cors";
 import moment from "moment";
 
 import { buffer } from "micro";
@@ -138,11 +136,11 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
     to: toEmail,
     subject: `Order Confirmation/Ticket - Fright at the Mansion 2022`,
     text: `
-     Hello ${session.metadata.name}}:
+     Hello ${session.metadata.name}},
  
      Thank you for your purchase of a Fright at the Mansion 2022 ticket! \n
  
-     You can find your ticket and receipt attached. \n
+     You can find your ticket attached. \n
  
      Ticket Info: \n
      ${session.metadata.ticketName} x1 \n
@@ -164,7 +162,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
 
     html: `
      <div id="gmail-:5au" class="gmail-Ar gmail-Au gmail-Ao">
-   <div id="gmail-:55r" class="gmail-Am gmail-Al editable gmail-LW-avf gmail-tS-tW gmail-tS-tY" style="direction: ltr; min-height: 590px;" tabindex="1" role="textbox" aria-label="Message Body" aria-multiline="true">Hello ${session.metadata.name}: 
+   <div id="gmail-:55r" class="gmail-Am gmail-Al editable gmail-LW-avf gmail-tS-tW gmail-tS-tY" style="direction: ltr; min-height: 590px;" tabindex="1" role="textbox" aria-label="Message Body" aria-multiline="true">Hello ${session.metadata.name}, 
      <br>
      <br>Thank you for your purchase of a 
      <span class="LI ng" data-ddnwab="PR_1_0" aria-invalid="spelling">Fright at the Mansion</span> 2022 ticket! 
@@ -207,17 +205,11 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
         content: ticketPdf,
         encoding: "base64",
       },
-      {
-        filename: `frightatmansion-receipt.pdf`,
-        content: receiptPdf,
-        encoding: "base64",
-      },
     ],
   };
 
   await transporter.sendMail(mailData);
 };
-
 const fulfillPurchase = async (session) => {
   // Create ticket id
   const ticket_id = generateRandomCode(12);
@@ -259,22 +251,25 @@ const fulfillPurchase = async (session) => {
   const ticketPdf = await generateTicket(session, ticket_id);
   const receiptPdf = await generateReciept(session);
 
-  await sendMail("colin.grob87@gmail.com", ticketPdf, receiptPdf, session);
+  await sendMail(
+    session.customer_details.email,
+    ticketPdf,
+    receiptPdf,
+    session
+  );
 };
-
-export const config = { api: { bodyParser: false } };
 
 const webhookHandler = async (req, res) => {
   const session = {
     customer_details: {
-      email: "colin.grob87@gmail.com",
+      email: req.body.email,
     },
     metadata: {
-      ticketName: "Fright at the Mansion 2022 Early Bird Ticket",
-      name: "Colin Grob",
-      accessCode: "U9C2W2",
+      ticketName: "Fright at the Mansion 2022 VIP Ticket",
+      name: req.body.name,
+      accessCode: "AAAAA",
     },
-    amount_total: 999,
+    amount_total: 0,
   };
 
   await fulfillPurchase(session);
