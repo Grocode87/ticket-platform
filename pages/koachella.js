@@ -214,9 +214,7 @@ const KoachellaHome = () => {
             </p>
             <p className="pt-6 pb-3 font-bold">LINEUP DROPPING SOON</p>
 
-            <p className="pt-6">
-              WHEN: Friday, March 10th at 7:00pm. Doors close at 8:30pm
-            </p>
+            <p className="pt-6">WHEN: Friday, March 10th at 7:30pm.</p>
             <p className="">
               WHERE: 2880 Westbrook Mall, First House on the Left
             </p>
