@@ -131,7 +131,7 @@ const KoachellaHome = () => {
                 </div>
                  */}
                 <div>
-                  <p>AVAILABLE MARCH 19th @ NOON</p>
+                  <p>AVAILABLE FEB 19th @ NOON</p>
                 </div>
               </div>
 
