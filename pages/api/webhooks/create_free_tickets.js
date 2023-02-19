@@ -138,7 +138,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
     text: `
      Hello ${session.metadata.name}},
  
-     Thank you for your purchase of a Fright at the Mansion 2022 ticket! \n
+     Thank you for your purchase of a Koachella 2022 ticket! \n
  
      You can find your ticket attached. \n
  
@@ -165,7 +165,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
    <div id="gmail-:55r" class="gmail-Am gmail-Al editable gmail-LW-avf gmail-tS-tW gmail-tS-tY" style="direction: ltr; min-height: 590px;" tabindex="1" role="textbox" aria-label="Message Body" aria-multiline="true">Hello ${session.metadata.name}, 
      <br>
      <br>Thank you for your purchase of a 
-     <span class="LI ng" data-ddnwab="PR_1_0" aria-invalid="spelling">Fright at the Mansion</span> 2022 ticket! 
+     <span class="LI ng" data-ddnwab="PR_1_0" aria-invalid="spelling">Koachella</span> 2022 ticket! 
      <br>
      <br>
      <strong>You can find your ticket attached.</strong> 
@@ -190,7 +190,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      <br>
      <br>
      <br>
-     <br>FRIGHT AT THE MANSION 2022
+     <br>Koachella 2022
      <br>PRESENTED BY KAPPA SIGMA
      <br>
      <br>
@@ -246,7 +246,7 @@ const fulfillPurchase = async (session) => {
     customer_email: session.customer_details.email || "",
     sorority: codeData?.sorority_name || "",
   };
-  await supabase.from("tickets_halloween").insert([newTicket]);
+  await supabase.from("tickets_2").insert([newTicket]);
 
   const ticketPdf = await generateTicket(session, ticket_id);
   const receiptPdf = await generateReciept(session);
@@ -265,7 +265,7 @@ const webhookHandler = async (req, res) => {
       email: req.body.email,
     },
     metadata: {
-      ticketName: "Fright at the Mansion 2022 VIP Ticket",
+      ticketName: "Koachella 2023 VIP Ticket",
       name: req.body.name,
       accessCode: "AAAAA",
     },

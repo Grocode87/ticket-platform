@@ -169,17 +169,51 @@ const KoachellaHome = () => {
                 <Image src="/images/logo-fb.png" width={20} height={20} />
               </a>
             </div>
-            <p className="pt-6 font-bold text-xl">
-              Reach out to a brother for an access code.
-            </p>
+            <p className="pt-4 font-bold text-xl">Dont have an access code? </p>
+            <p>Reach out to any of our representatives below:</p>
+            <ul className="list-disc pl-8">
+              <li>
+                Luke Doricic{" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.instagram.com/luukedoricic/"
+                  className="text-blue-400"
+                >
+                  @luukedoricic
+                </a>
+              </li>
+              <li>
+                Mick Dobrov{" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.instagram.com/mick_dobrov/"
+                  className="text-blue-400"
+                >
+                  @mick_dobrov
+                </a>
+              </li>
+              <li>
+                Khaleel Lalani{" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.instagram.com/khaleellalani/"
+                  className="text-blue-400"
+                >
+                  @khaleellalani
+                </a>
+              </li>
+            </ul>
 
             <p className="pt-8">
-              From the house that brought you Koachella, Bora Bora, Underground
-              and many other iconic events, we present to you - Koachella 2023
-              From the house that brought you @boslen, @felixcartal,
-              @ericreprid, @graysonrepp and @cotis1k28 to name a few, we are
-              stoked to invite you to our annual annual music festival, and this
-              year will be crazier than ever.
+              From the house that brought you Bora Bora, Underground and many
+              other iconic events, we present to you - Koachella 2023 Past
+              performers include @boslen, @felixcartal, @ericreprid,
+              @graysonrepp and @cotis1k28 to name a few, we are stoked to invite
+              you to our annual music festival, and this year will be crazier
+              than ever.
             </p>
             <p className="pt-6">
               The Brothers of Kappa Sigma officially present to you, KOACHΣLLA
