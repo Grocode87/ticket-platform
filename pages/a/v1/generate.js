@@ -72,7 +72,7 @@ export default function Home() {
             <p>Generated codes</p>
             <div className="border-2 bg-gray-50 rounded-lg p-2">
               {codes.map((code) => {
-                return <p>{code.code}</p>;
+                return <p key={code.code}>{code.code}</p>;
               })}
             </div>
           </div>
