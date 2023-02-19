@@ -161,18 +161,10 @@ const KoachellaHome = () => {
             <div className="flex space-x-2 pt-2">
               <a
                 rel="noreferrer"
-                href="https://www.instagram.com/p/Cjn3Qy1J5gr/"
+                href="https://www.instagram.com/p/CoxlDeoverQ/"
                 target="_blank"
               >
                 <Image src="/images/logo-ig.png" width={20} height={20} />
-              </a>
-
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href="https://www.facebook.com/events/764365438000886"
-              >
-                <Image src="/images/logo-fb.png" width={20} height={20} />
               </a>
             </div>
             <p className="pt-4 font-bold text-xl">Dont have an access code? </p>
