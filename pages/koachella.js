@@ -207,8 +207,9 @@ const KoachellaHome = () => {
 
             <p className="pt-8">
               From the house that brought you Bora Bora, Underground and many
-              other iconic events, we present to you - Koachella 2023 Past
-              performers include @boslen, @felixcartal, @ericreprid,
+              other iconic events, we present to you - Koachella 2023.
+              <br />
+              Past performers include @boslen, @felixcartal, @ericreprid,
               @graysonrepp and @cotis1k28 to name a few, we are stoked to invite
               you to our annual music festival, and this year will be crazier
               than ever.
