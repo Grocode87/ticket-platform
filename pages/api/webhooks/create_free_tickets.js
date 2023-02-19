@@ -38,7 +38,7 @@ const generateTicket = async (session, ticket_id) => {
 
   //IMAGE
   const ticketTemplate = await fetchImage(
-    "https://www.ksigubcevents.com/images%2Fticket_template.png"
+    "https://www.ksigubcevents.com/images%2Fkoachella2023ticket.jpg"
   );
   doc.image(ticketTemplate, 0, 0, { width: 620, height: 800 });
   //doc.image("public/images/ticket_template.png", 0, 0, {width: 620, height: 800})
@@ -47,7 +47,7 @@ const generateTicket = async (session, ticket_id) => {
     .fontSize(15)
     .fillColor("white")
     .font("Helvetica-Bold")
-    .text(ticket_id, 119, 672);
+    .text(ticket_id, 284, 586);
 
   //'./public/uploads'
   //doc.image("phone-icon.jpg", 65, 260, {width: 50});
@@ -56,16 +56,16 @@ const generateTicket = async (session, ticket_id) => {
     .fontSize(30)
     .fillColor("white")
     .font("Helvetica-Bold")
-    .text(session.metadata.name, 2, 270, { width: 610, align: "center" });
+    .text(session.metadata.name, 2, 253, { width: 610, align: "center" });
   doc
-    .fontSize(17)
+    .fontSize(13)
     .fillColor("white")
-    .text(session.metadata.ticketName, 2, 305, { width: 610, align: "center" });
+    .text(session.metadata.ticketName, 2, 288, { width: 610, align: "center" });
   doc.image(
     generateQRCode("https://www.ksigubcevents.com/ticket/" + ticket_id),
-    186,
-    335,
-    { width: 245 }
+    192,
+    310,
+    { width: 235 }
   );
 
   doc.end();
@@ -88,7 +88,7 @@ const generateReciept = async (session) => {
   const doc = new PDFDocument();
 
   const receiptTemplate = await fetchImage(
-    "https://www.ksigubcevents.com/images%2Freceipt_template.png"
+    "https://www.ksigubcevents.com/images%2Fkoachella2023ticket.jpg"
   );
   doc.image(receiptTemplate, 0, 0, { width: 620, height: 800 });
   doc.fillColor("white");
@@ -134,11 +134,11 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
   const mailData = {
     from: "noreply@ksigubcevents.com",
     to: toEmail,
-    subject: `Order Confirmation/Ticket - Fright at the Mansion 2022`,
+    subject: `Order Confirmation/Ticket - Koachella 2023`,
     text: `
      Hello ${session.metadata.name}},
  
-     Thank you for your purchase of a Koachella 2022 ticket! \n
+     Thank you for your purchase of a Koachella 2023 ticket! \n
  
      You can find your ticket attached. \n
  
@@ -147,7 +147,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      ${session.metadata.name} \n
  
      Event Details: \n
-     7:00PM, Saturday, March 19th, 2022 \n
+     7:30PM, Saturday, March 10th, 2023 \n
      2880 Wesbrook Mall, First House on the Left \n
  
  
@@ -165,7 +165,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
    <div id="gmail-:55r" class="gmail-Am gmail-Al editable gmail-LW-avf gmail-tS-tW gmail-tS-tY" style="direction: ltr; min-height: 590px;" tabindex="1" role="textbox" aria-label="Message Body" aria-multiline="true">Hello ${session.metadata.name}, 
      <br>
      <br>Thank you for your purchase of a 
-     <span class="LI ng" data-ddnwab="PR_1_0" aria-invalid="spelling">Koachella</span> 2022 ticket! 
+     <span class="LI ng" data-ddnwab="PR_1_0" aria-invalid="spelling">Koachella</span> 2023 ticket! 
      <br>
      <br>
      <strong>You can find your ticket attached.</strong> 
@@ -178,7 +178,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      <br>
      <br>
      <strong>Event Details:</strong> 
-     <br>9:00PM, Saturday, October 29th, 2022 
+     <br>7:30PM, Friday, March 10th, 2023 
      <br>2880 Wesbrook Mall, First House on the Left 
      <br>
      <br>
@@ -190,7 +190,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      <br>
      <br>
      <br>
-     <br>Koachella 2022
+     <br>KOACHELLA 2023
      <br>PRESENTED BY KAPPA SIGMA
      <br>
      <br>
@@ -201,7 +201,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      `,
     attachments: [
       {
-        filename: `frightatmansion-ticket.pdf`,
+        filename: `koachella-2023-ticket.pdf`,
         content: ticketPdf,
         encoding: "base64",
       },
@@ -262,11 +262,11 @@ const fulfillPurchase = async (session) => {
 const webhookHandler = async (req, res) => {
   const session = {
     customer_details: {
-      email: req.body.email,
+      email: "colin.grob87@gmail.com",
     },
     metadata: {
       ticketName: "Koachella 2023 VIP Ticket",
-      name: req.body.name,
+      name: "Colin Grob",
       accessCode: "AAAAA",
     },
     amount_total: 0,

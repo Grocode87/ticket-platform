@@ -40,7 +40,7 @@ const generateTicket = async (session, ticket_id) => {
 
   //IMAGE
   const ticketTemplate = await fetchImage(
-    "https://www.ksigubcevents.com/images%2Fticket_template.png"
+    "https://www.ksigubcevents.com/images%2Fkoachella2023ticket.jpg"
   );
   doc.image(ticketTemplate, 0, 0, { width: 620, height: 800 });
   //doc.image("public/images/ticket_template.png", 0, 0, {width: 620, height: 800})
@@ -49,7 +49,7 @@ const generateTicket = async (session, ticket_id) => {
     .fontSize(15)
     .fillColor("white")
     .font("Helvetica-Bold")
-    .text(ticket_id, 119, 672);
+    .text(ticket_id, 284, 586);
 
   //'./public/uploads'
   //doc.image("phone-icon.jpg", 65, 260, {width: 50});
@@ -58,16 +58,16 @@ const generateTicket = async (session, ticket_id) => {
     .fontSize(30)
     .fillColor("white")
     .font("Helvetica-Bold")
-    .text(session.metadata.name, 2, 270, { width: 610, align: "center" });
+    .text(session.metadata.name, 2, 253, { width: 610, align: "center" });
   doc
-    .fontSize(17)
+    .fontSize(13)
     .fillColor("white")
-    .text(session.metadata.ticketName, 2, 305, { width: 610, align: "center" });
+    .text(session.metadata.ticketName, 2, 288, { width: 610, align: "center" });
   doc.image(
     generateQRCode("https://www.ksigubcevents.com/ticket/" + ticket_id),
-    186,
-    335,
-    { width: 245 }
+    192,
+    310,
+    { width: 235 }
   );
 
   doc.end();
@@ -120,7 +120,7 @@ const generateReciept = async (session) => {
 };
 
 // Handler to send email with content
-const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
+const sendMail = async (toEmail, ticketPdf, session) => {
   let nodemailer = require("nodemailer");
 
   const transporter = nodemailer.createTransport({
@@ -149,11 +149,11 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      ${session.metadata.name} \n
  
      Event Details: \n
-     7:00PM, Friday, March 10th, 2023 \n
+     7:30PM, Friday, March 10th, 2023 \n
      2880 Wesbrook Mall, First House on the Left \n
  
  
-     We look forward to seeing you there, please arrive on time as the event will start shortly after 7:00PM. \n
+     We look forward to seeing you there, please arrive on time as the event will start shortly after 7:30PM. \n
  
  
      Enjoy the event, and stay safe! \n
@@ -180,11 +180,11 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      <br>
      <br>
      <strong>Event Details:</strong> 
-     <br>7:00PM, Friday, March 10th, 2023 
+     <br>7:30PM, Friday, March 10th, 2023
      <br>2880 Wesbrook Mall, First House on the Left 
      <br>
      <br>
-     <br>We look forward to seeing you there!
+     <br>We look forward to seeing you there, please arrive on time as the event will start shortly after 7:30PM.
      <br>
      <br>
      <br>
@@ -203,7 +203,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      `,
     attachments: [
       {
-        filename: `frightatmansion-ticket.pdf`,
+        filename: `koachella-2023-ticket.pdf`,
         content: ticketPdf,
         encoding: "base64",
       },
@@ -251,14 +251,9 @@ const fulfillPurchase = async (session) => {
   await supabase.from("tickets_2").insert([newTicket]);
 
   const ticketPdf = await generateTicket(session, ticket_id);
-  const receiptPdf = await generateReciept(session);
+  //const receiptPdf = await generateReciept(session);
 
-  await sendMail(
-    session.customer_details.email,
-    ticketPdf,
-    receiptPdf,
-    session
-  );
+  await sendMail(session.customer_details.email, ticketPdf, session);
 };
 
 export const config = { api: { bodyParser: false } };
