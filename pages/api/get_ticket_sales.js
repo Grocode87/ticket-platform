@@ -2,7 +2,7 @@ import generateRandomCode from "../../utils/generate";
 import { supabase } from "../../utils/supabaseClient";
 
 const handler = async (req, res) => {
-  const { data } = await supabase.from("tickets_halloween").select();
+  const { data } = await supabase.from("tickets_2").select();
 
   let tickets = {};
   data.forEach((ticket) => {

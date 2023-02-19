@@ -16,9 +16,9 @@ const TierListing = ({ data }) => {
   };
 
   return (
-    <div className="w-full md:w-8/12 lg:w-1/2 border border-gray-700 rounded-lg shadow-md p-4 my-8 flex justify-between items-center bg-gray-900">
+    <div className="w-full md:w-8/12 lg:w-1/2 border border-gray-700 rounded-lg shadow-md p-4 my-8 flex justify-between items-center bg-zinc-900">
       <div className="pr-4 text-left">
-        <p className="">Fright at the Mansion 2022</p>
+        <p className="">Koachella 2023</p>
         <p className="font-bold text-xl">{name} Ticket</p>
 
         {sorority_name && <p className="">{sorority_name}</p>}

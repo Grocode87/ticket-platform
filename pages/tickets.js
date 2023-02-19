@@ -5,9 +5,9 @@ import Head from "next/head";
 
 const Tickets = ({ code, prices }) => {
   return (
-    <div className="w-full min-h-screen bg-slate-900 text-white">
+    <div className="w-full min-h-screen bg-black text-white">
       <Head>
-        <title>Fright at the Mansion 2022</title>
+        <title>Koachella 2023 - Tickets</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -48,7 +48,7 @@ export async function getServerSideProps(context) {
     let prices = res.data.data;
 
     prices = prices.sort((first, second) => {
-      return first.id > second.id ? 1 : -1;
+      return first.id < second.id ? 1 : -1;
     });
 
     if (prices[0].name == "Exclusive Sorority") {

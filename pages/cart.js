@@ -79,7 +79,7 @@ const Cart = ({ query }) => {
         email: email,
         priceId: ticketData.price_id,
         accessCode: accessCode,
-        ticketName: "Fright at The Mansion 2022 " + ticketData.name + " Ticket",
+        ticketName: "Koachella 2023 " + ticketData.name + " Ticket",
       });
 
       const stripe = await loadStripe(
@@ -93,9 +93,9 @@ const Cart = ({ query }) => {
   };
 
   return (
-    <div className="flex py-8 bg-slate-900 text-white">
+    <div className="flex py-8 bg-black text-white">
       <Head>
-        <title>Fright at the Mansion 2022</title>
+        <title>Koachella 2023 - Cart</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -150,7 +150,7 @@ const Cart = ({ query }) => {
         <p className="text-xl font-semibold pt-12 pb-2">Cart</p>
         <div className="flex flex-col">
           <div className="flex justify-between border-b pb-2">
-            <p>Fright at the Mansion 2022 {ticketData.name} Ticket x 1</p>
+            <p>Koachella 2023 {ticketData.name} Ticket x 1</p>
             <p className="font-bold">${ticketData.price / 100}</p>
           </div>
           <div className="flex justify-between border-b pb-2 pt-2">

@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Fright at the Mansion UBC</title>
+        <title>Koachella 2023</title>
         <meta name="description" content="Koachella UBC" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

@@ -5,10 +5,14 @@ module.exports = {
   ],
   theme: {
     extend: {
-        backgroundImage: {
-          'gif': "url('/images/phone-video.gif')",
-        }
+      backgroundImage: {
+        gif: "url('/images/phone-video.gif')",
+      },
+      fontFamily: {
+        nighty: ["NightyFont"],
+        sans: ["NightyFont", "sans-serif"],
+      },
     },
   },
   plugins: [],
-}
+};

@@ -8,7 +8,7 @@ const Cancelled = () => {
   return (
     <div>
       <Head>
-        <title>Fright at the Mansion 2022</title>
+        <title>Koachella 2023 - Cancelled</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -27,7 +27,7 @@ const Cancelled = () => {
             <p className="pb-6">You have not been charged!</p>
 
             <button
-              onClick={() => router.push("/")}
+              onClick={() => router.push("/koachella")}
               className={
                 "p-2 rounded-lg shadow-md bg-orange-500 text-white mt-8"
               }

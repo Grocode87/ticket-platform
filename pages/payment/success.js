@@ -8,7 +8,7 @@ const Success = () => {
   return (
     <div>
       <Head>
-        <title>Fright at the Mansion 2022</title>
+        <title>Koachella 2023 - Success</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -25,7 +25,7 @@ const Success = () => {
           <div className="pt-12 text-lg">
             <p className="font-semibold text-2xl pb-4">Payment Succesful!</p>
             <p className="pb-6">
-              Thank you for your purchase of a Fright at the Mansion 2022 ticket
+              Thank you for your purchase of a Koachella 2023 ticket
             </p>
 
             <p className="pb-20">
@@ -39,7 +39,7 @@ const Success = () => {
             </p>
 
             <button
-              onClick={() => router.push("/")}
+              onClick={() => router.push("/koachella")}
               className={
                 "p-2 rounded-lg shadow-md bg-purple-700 text-white mt-8"
               }
