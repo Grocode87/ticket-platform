@@ -4,8 +4,9 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function Home() {
-  const [code, setCode] = useState("");
+  const [codes, setCodes] = useState([]);
   const [sorority, setSorority] = useState(false);
+  const [amount, setAmount] = useState(1);
 
   const generateCode = async () => {
     let sororityValid = false;
@@ -21,11 +22,9 @@ export default function Home() {
       }
     });
 
-    const codeData = await axios.get(
-      "/api/generate_code?sorority=" + (sororityValid ? sorority : false)
-    );
+    const codeData = await axios.get("/api/generate_code?amount=" + amount);
 
-    setCode(codeData.data.code);
+    setCodes(codeData.data.codes);
   };
   return (
     <div>
@@ -49,20 +48,33 @@ export default function Home() {
             ></input>
           </div>
            */}
-          <button
-            className="rounded p-2 bg-blue-600 text-white w-min"
-            onClick={generateCode}
-          >
-            <p>Generate</p>
-          </button>
+
+          <p>Amount</p>
+          <input
+            type={"number"}
+            className="border-2 bg-gray-50 rounded-lg p-2"
+            value={amount}
+            onChange={(e) => {
+              setAmount(e.target.value);
+            }}
+          />
+
+          <div className="pt-6">
+            <button
+              className="rounded p-2 bg-blue-600 text-white w-min"
+              onClick={generateCode}
+            >
+              <p>Generate</p>
+            </button>
+          </div>
 
           <div className="pt-8">
-            <input
-              type={"text"}
-              disabled={true}
-              className="border-2 bg-gray-50 rounded-lg p-2"
-              value={code}
-            />
+            <p>Generated codes</p>
+            <div className="border-2 bg-gray-50 rounded-lg p-2">
+              {codes.map((code) => {
+                return <p>{code.code}</p>;
+              })}
+            </div>
           </div>
         </div>
       </div>
