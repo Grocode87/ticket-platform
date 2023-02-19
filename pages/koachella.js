@@ -110,7 +110,6 @@ const KoachellaHome = () => {
               <div className="pb-14">
                 <p className="text-2xl font-bold pb-3">GET ON THE GUESTLIST</p>
 
-                {/**
                 <input
                   type="text"
                   className="bg-gray-200 rounded-xl p-2 text-black text-center w-64"
@@ -121,17 +120,12 @@ const KoachellaHome = () => {
                   <p className="text-red-600">Enter a valid access code</p>
                 )}
                 <div>
-
                   <button
                     className="bg-orange-500 w-min px-4 py-2 text-lg rounded-xl mt-4 font-bold"
                     onClick={checkValidCode}
                   >
                     {!loading ? "CONTINUE" : "LOADING..."}
                   </button>
-                </div>
-                 */}
-                <div>
-                  <p>AVAILABLE FEB 19th @ NOON</p>
                 </div>
               </div>
 
