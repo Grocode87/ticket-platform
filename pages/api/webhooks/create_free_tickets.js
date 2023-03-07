@@ -29,7 +29,6 @@ const generateQRCode = (data) => {
 
   return qr_str;
 };
-
 const generateTicket = async (session, ticket_id) => {
   const PDFDocument = require("pdfkit");
 
@@ -81,44 +80,8 @@ const fetchImage = async (src) => {
   return image;
 };
 
-const generateReciept = async (session) => {
-  const PDFDocument = require("pdfkit");
-
-  // instantiate the library
-  const doc = new PDFDocument();
-
-  const receiptTemplate = await fetchImage(
-    "https://www.ksigubcevents.com/images%2Fkoachella2023ticket.jpg"
-  );
-  doc.image(receiptTemplate, 0, 0, { width: 620, height: 800 });
-  doc.fillColor("white");
-  doc.text(moment().format("MMMM Do YYYY, h:mm:ss a"), 253, 333);
-  doc.text(session.metadata.name, 165, 355);
-  doc.text(session.customer_details.email, 165, 380);
-
-  doc.fontSize(15);
-  doc.text(session.metadata.ticketName, 115, 425);
-  doc.text("Tax/Fees", 115, 450);
-  doc.text("Total", 115, 500);
-
-  doc.font("Helvetica-Bold");
-  doc.text(
-    "$" + Math.round((session.amount_total / 100 - 1.44) * 100) / 100,
-    430,
-    425
-  );
-  doc.text("$1.44", 430, 450);
-  doc.text("$" + session.amount_total / 100, 430, 510);
-  doc.font("Helvetica");
-
-  doc.end();
-
-  const pdfStream = await getStream.buffer(doc);
-  return pdfStream;
-};
-
 // Handler to send email with content
-const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
+const sendMail = async (toEmail, ticketPdf, session) => {
   let nodemailer = require("nodemailer");
 
   const transporter = nodemailer.createTransport({
@@ -147,11 +110,11 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      ${session.metadata.name} \n
  
      Event Details: \n
-     7:30PM, Saturday, March 10th, 2023 \n
+     7:30PM, Friday, March 10th, 2023 \n
      2880 Wesbrook Mall, First House on the Left \n
  
  
-     We look forward to seeing you there, please arrive on time as the event will start shortly after 7:00PM. \n
+     We look forward to seeing you there, please arrive on time as the event will start shortly after 7:30PM. \n
  
  
      Enjoy the event, and stay safe! \n
@@ -178,11 +141,11 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      <br>
      <br>
      <strong>Event Details:</strong> 
-     <br>7:30PM, Friday, March 10th, 2023 
+     <br>7:30PM, Friday, March 10th, 2023
      <br>2880 Wesbrook Mall, First House on the Left 
      <br>
      <br>
-     <br>We look forward to seeing you there!
+     <br>We look forward to seeing you there, please arrive on time as the event will start shortly after 7:30PM.
      <br>
      <br>
      <br>
@@ -249,24 +212,18 @@ const fulfillPurchase = async (session) => {
   await supabase.from("tickets_2").insert([newTicket]);
 
   const ticketPdf = await generateTicket(session, ticket_id);
-  const receiptPdf = await generateReciept(session);
 
-  await sendMail(
-    session.customer_details.email,
-    ticketPdf,
-    receiptPdf,
-    session
-  );
+  await sendMail(session.customer_details.email, ticketPdf, session);
 };
 
 const webhookHandler = async (req, res) => {
   const session = {
     customer_details: {
-      email: "colin.grob87@gmail.com",
+      email: "kalakaila04@gmail.com",
     },
     metadata: {
-      ticketName: "Koachella 2023 VIP Ticket",
-      name: "Colin Grob",
+      ticketName: "Koachella 2023 Tier 2 Ticket",
+      name: "Suhaila Ng",
       accessCode: "AAAAA",
     },
     amount_total: 0,

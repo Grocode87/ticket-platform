@@ -212,9 +212,23 @@ const KoachellaHome = () => {
               The Brothers of Kappa Sigma officially present to you, KOACHΣLLA
               2023{" "}
             </p>
-            <p className="pt-6 pb-3 font-bold">LINEUP DROPPING SOON</p>
+            <p className="pt-6 pb-1 font-bold">LINEUP</p>
+            <p className="font-bold pt-1">Artists</p>
+            <p>PARISPLAYEDYOU</p>
+            <p>DENZEL O$I</p>
+            <p>QWISS</p>
+            <p>NEMATI</p>
+            <p>WAKI</p>
+            <p>REVEREND APE</p>
+            <p>SEB COVE</p>
 
-            <p className="pt-6">WHEN: Friday, March 10th at 7:30pm.</p>
+            <p className="font-bold pt-3">DJs</p>
+            <p>SINESTO</p>
+            <p>CHEEVO</p>
+            <p>KEISCENDO</p>
+            <p>MODI</p>
+
+            <p className="pt-10">WHEN: Friday, March 10th at 7:30pm.</p>
             <p className="">
               WHERE: 2880 Westbrook Mall, First House on the Left
             </p>
