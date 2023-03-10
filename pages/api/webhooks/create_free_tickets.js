@@ -219,11 +219,11 @@ const fulfillPurchase = async (session) => {
 const webhookHandler = async (req, res) => {
   const session = {
     customer_details: {
-      email: "kalakaila04@gmail.com",
+      email: "marisasmith2323@gmail.com",
     },
     metadata: {
-      ticketName: "Koachella 2023 Tier 2 Ticket",
-      name: "Suhaila Ng",
+      ticketName: "Koachella 2023 Tier 3 Ticket",
+      name: "Marisa Smith",
       accessCode: "AAAAA",
     },
     amount_total: 0,
