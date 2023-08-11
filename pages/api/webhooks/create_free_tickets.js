@@ -125,7 +125,7 @@ const sendMail = async (toEmail, ticketPdf, session) => {
 
     html: `
      <div id="gmail-:5au" class="gmail-Ar gmail-Au gmail-Ao">
-   <div id="gmail-:55r" class="gmail-Am gmail-Al editable gmail-LW-avf gmail-tS-tW gmail-tS-tY" style="direction: ltr; min-height: 590px;" tabindex="1" role="textbox" aria-label="Message Body" aria-multiline="true">Hello ${session.metadata.name}, 
+   <div id="gmail-:55r" class="gmail-Am gmail-Al editable gmail-LW-avf gmail-tS-tW gmail-tS-tY" style="direction: ltr; min-height: 590px;" tabindex="1" role="textbox" aria-label="Message Body" aria-multiline="true">Hello, 
      <br>
      <br>Thank you for your purchase of a 
      <span class="LI ng" data-ddnwab="PR_1_0" aria-invalid="spelling">Koachella</span> 2023 ticket! 
@@ -219,11 +219,11 @@ const fulfillPurchase = async (session) => {
 const webhookHandler = async (req, res) => {
   const session = {
     customer_details: {
-      email: "marisasmith2323@gmail.com",
+      email: "colin.grob87@gmail.com",
     },
     metadata: {
       ticketName: "Koachella 2023 Tier 3 Ticket",
-      name: "Marisa Smith",
+      name: "Free Ticket 6",
       accessCode: "AAAAA",
     },
     amount_total: 0,
