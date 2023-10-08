@@ -248,7 +248,7 @@ const fulfillPurchase = async (session) => {
     customer_email: session.customer_details.email || "",
     sorority: codeData?.sorority_name || "",
   };
-  await supabase.from("tickets_halloween").insert([newTicket]);
+  await supabase.from("halloween_2023").insert([newTicket]);
 
   const ticketPdf = await generateTicket(session, ticket_id);
   const receiptPdf = await generateReciept(session);

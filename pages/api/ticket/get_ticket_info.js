@@ -3,7 +3,7 @@ import { supabase } from "../../../utils/supabaseClient";
 const handler = async (req, res) => {
   // add to supabase
   const { data, error } = await supabase
-    .from("tickets_halloween")
+    .from("halloween_2023")
     .select()
     .eq("code", req.query.code);
 
