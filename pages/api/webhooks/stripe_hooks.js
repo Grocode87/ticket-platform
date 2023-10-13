@@ -220,6 +220,7 @@ const fulfillPurchase = async (session) => {
   await sendMail(session.customer_details.email, ticketPdf, session);
 };
 
+export const maxDuration = 300;
 export const config = { api: { bodyParser: false } };
 
 const webhookHandler = async (req, res) => {
