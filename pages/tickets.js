@@ -47,12 +47,7 @@ export async function getServerSideProps(context) {
 
     if (prices[0].name == "Exclusive Sorority") {
       const first = prices[0];
-      prices = prices.slice(1);
-
-      prices = prices.reverse();
-      prices.unshift(first);
     } else {
-      prices = prices.reverse();
     }
 
     prices = prices.filter((ticket) => {

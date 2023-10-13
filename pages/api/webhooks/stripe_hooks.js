@@ -216,7 +216,6 @@ const fulfillPurchase = async (session) => {
   await supabase.from("halloween_2023").insert([newTicket]);
 
   const ticketPdf = await generateTicket(session, ticket_id);
-  const receiptPdf = await generateReciept(session);
 
   await sendMail(session.customer_details.email, ticketPdf, session);
 };

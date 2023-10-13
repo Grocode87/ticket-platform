@@ -116,12 +116,12 @@ const FrightAtMansion = () => {
           {/** BASIC INFO*/}
           <div className="min-h-screen flex flex-col justify-between">
             {/** TOP */}
-            <div className="text-3xl p-4 pt-20 sm:px-20">
+            <div className="text-3xl p-4 pt-20 sm:px-32">
               <Image
                 priority
                 src="/images/header_main.png"
                 width={700}
-                height={600}
+                height={520}
               />
             </div>
 
