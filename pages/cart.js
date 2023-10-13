@@ -79,7 +79,7 @@ const Cart = ({ query }) => {
         email: email,
         priceId: ticketData.price_id,
         accessCode: accessCode,
-        ticketName: "Fright at The Mansion 2022 " + ticketData.name + " Ticket",
+        ticketName: "Fright at The Mansion 2023 " + ticketData.name + " Ticket",
       });
 
       const stripe = await loadStripe(
@@ -95,21 +95,18 @@ const Cart = ({ query }) => {
   return (
     <div className="flex py-8 bg-slate-900 text-white">
       <Head>
-        <title>Fright at the Mansion 2022</title>
+        <title>Fright at the Mansion 2023</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className="w-full px-8 m-auto md:w-1/2 md:px-0">
-        <div className="w-full sm:w-8/12">
-          <Image
-            src="/images/header_flat_basic.png"
-            priority
-            width={800}
-            height={250}
-          />
-        </div>
-        <p className="text-3xl font-bold pt-8">Checkout</p>
+        <p className="text-4xl font-bold pt-14 pb-4 text-center sm:text-left">
+          FRIGHT AT THE MANSION 2023
+        </p>
+        <p className="text-3xl font-semibold text-center sm:text-left">
+          CHECKOUT
+        </p>
 
         <p className="pt-8 font-bold text-xl">Your Info</p>
         <p className="pt-2 text-base">* Required</p>
@@ -150,7 +147,7 @@ const Cart = ({ query }) => {
         <p className="text-xl font-semibold pt-12 pb-2">Cart</p>
         <div className="flex flex-col">
           <div className="flex justify-between border-b pb-2">
-            <p>Fright at the Mansion 2022 {ticketData.name} Ticket x 1</p>
+            <p>Fright at the Mansion 2023 {ticketData.name} Ticket x 1</p>
             <p className="font-bold">${ticketData.price / 100}</p>
           </div>
           <div className="flex justify-between border-b pb-2 pt-2">
@@ -185,7 +182,7 @@ const Cart = ({ query }) => {
         {errorMsg && <p className="text-red-600 mt-10">{errorMsg}</p>}
         <button
           onClick={redirectToCheckout}
-          className={"p-2 rounded-lg shadow-md bg-orange-500 text-white mt-8"}
+          className={"p-2 rounded-lg shadow-md bg-red-700 text-white mt-8"}
         >
           {!loading ? "Continue to Payment" : "Loading..."}
         </button>
