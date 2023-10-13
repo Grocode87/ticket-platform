@@ -47,11 +47,12 @@ const generateTicket = async (session, ticket_id) => {
     .fontSize(15)
     .fillColor("white")
     .font("Helvetica-Bold")
-    .text(ticket_id, 119, 672);
+    .text(ticket_id, 280, 536);
 
   //'./public/uploads'
   //doc.image("phone-icon.jpg", 65, 260, {width: 50});
 
+  /**
   doc
     .fontSize(30)
     .fillColor("white")
@@ -61,10 +62,11 @@ const generateTicket = async (session, ticket_id) => {
     .fontSize(17)
     .fillColor("white")
     .text(session.metadata.ticketName, 2, 305, { width: 610, align: "center" });
+     */
   doc.image(
     generateQRCode("https://www.ksigubcevents.com/ticket/" + ticket_id),
     186,
-    335,
+    200,
     { width: 245 }
   );
 

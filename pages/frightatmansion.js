@@ -183,60 +183,47 @@ const FrightAtMansion = () => {
                 <Image src="/images/logo-ig.png" width={20} height={20} />
               </a>
             </div>
-            {/**
-            <p className="pt-4 font-bold text-xl">Dont have an access code? </p>
-            <p>Reach out to any of the brothers below:</p>
+
+            <p className="pt-4 font-bold text-xl">Need an access code? </p>
+            <p>DM a brother on the social team:</p>
             <ul className="list-disc pl-8">
               <li>
-                Arnav Sindhoor{" "}
+                Luke Doricic{" "}
                 <a
                   target="_blank"
                   rel="noreferrer"
-                  href="https://www.instagram.com/arnavzx/"
+                  href="https://www.instagram.com/lukedoricic/"
                   className="text-blue-400"
                 >
-                  @arnavzx
+                  @luukedoricic
                 </a>
               </li>
 
               <li>
-                Keith Tan{" "}
+                Khaleel Lalani{" "}
                 <a
                   target="_blank"
                   rel="noreferrer"
-                  href="https://www.instagram.com/keithtanxj/"
+                  href="https://www.instagram.com/khaleellalani/"
                   className="text-blue-400"
                 >
-                  @keithtanxj
+                  @khaleellalani
                 </a>
               </li>
 
               <li>
-                Dodi Lertpun{" "}
+                Mick Dobrov{" "}
                 <a
                   target="_blank"
                   rel="noreferrer"
-                  href="https://www.instagram.com/asianpapii/"
+                  href="https://www.instagram.com/mick_dobrov/"
                   className="text-blue-400"
                 >
-                  @asianpapii
-                </a>
-              </li>
-
-              <li>
-                Kirill Lazerev{" "}
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://www.instagram.com/klazarev_/"
-                  className="text-blue-400"
-                >
-                  @klazarev_
+                  @mick_dobrov
                 </a>
               </li>
             </ul>
 
-             */}
             <p className="pt-8">🎃BIG NEWS🎃</p>
             <p className="pt-3">
               🕸️Get ready for one of the biggest nights of the year! 👻The

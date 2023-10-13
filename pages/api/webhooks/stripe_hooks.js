@@ -49,11 +49,12 @@ const generateTicket = async (session, ticket_id) => {
     .fontSize(15)
     .fillColor("white")
     .font("Helvetica-Bold")
-    .text(ticket_id, 119, 672);
+    .text(ticket_id, 280, 536);
 
   //'./public/uploads'
   //doc.image("phone-icon.jpg", 65, 260, {width: 50});
 
+  /**
   doc
     .fontSize(30)
     .fillColor("white")
@@ -63,10 +64,11 @@ const generateTicket = async (session, ticket_id) => {
     .fontSize(17)
     .fillColor("white")
     .text(session.metadata.ticketName, 2, 305, { width: 610, align: "center" });
+     */
   doc.image(
     generateQRCode("https://www.ksigubcevents.com/ticket/" + ticket_id),
     186,
-    335,
+    200,
     { width: 245 }
   );
 
@@ -82,45 +84,7 @@ const fetchImage = async (src) => {
 
   return image;
 };
-
-const generateReciept = async (session) => {
-  const PDFDocument = require("pdfkit");
-
-  // instantiate the library
-  const doc = new PDFDocument();
-
-  const receiptTemplate = await fetchImage(
-    "https://www.ksigubcevents.com/images%2Freceipt_template.png"
-  );
-  doc.image(receiptTemplate, 0, 0, { width: 620, height: 800 });
-  doc.fillColor("white");
-  doc.text(moment().format("MMMM Do YYYY, h:mm:ss a"), 253, 333);
-  doc.text(session.metadata.name, 165, 355);
-  doc.text(session.customer_details.email, 165, 380);
-
-  doc.fontSize(15);
-  doc.text(session.metadata.ticketName, 115, 425);
-  doc.text("Tax/Fees", 115, 450);
-  doc.text("Total", 115, 500);
-
-  doc.font("Helvetica-Bold");
-  doc.text(
-    "$" + Math.round((session.amount_total / 100 - 1.44) * 100) / 100,
-    430,
-    425
-  );
-  doc.text("$1.44", 430, 450);
-  doc.text("$" + session.amount_total / 100, 430, 510);
-  doc.font("Helvetica");
-
-  doc.end();
-
-  const pdfStream = await getStream.buffer(doc);
-  return pdfStream;
-};
-
-// Handler to send email with content
-const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
+const sendMail = async (toEmail, ticketPdf, session) => {
   let nodemailer = require("nodemailer");
 
   const transporter = nodemailer.createTransport({
@@ -149,11 +113,11 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      ${session.metadata.name} \n
  
      Event Details: \n
-     7:00PM, Saturday, March 19th, 2022 \n
+     9:00PM, Friday, October 27th, 2023 \n
      2880 Wesbrook Mall, First House on the Left \n
  
  
-     We look forward to seeing you there, please arrive on time as the event will start shortly after 7:00PM. \n
+     We look forward to seeing you there! \n
  
  
      Enjoy the event, and stay safe! \n
@@ -180,7 +144,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      <br>
      <br>
      <strong>Event Details:</strong> 
-     <br>9:00PM, Saturday, October 29th, 2023
+     <br>9:00PM, Friday, October 27th, 2023
      <br>2880 Wesbrook Mall, First House on the Left 
      <br>
      <br>
@@ -212,6 +176,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
 
   await transporter.sendMail(mailData);
 };
+
 const fulfillPurchase = async (session) => {
   // Create ticket id
   const ticket_id = generateRandomCode(12);
@@ -253,12 +218,7 @@ const fulfillPurchase = async (session) => {
   const ticketPdf = await generateTicket(session, ticket_id);
   const receiptPdf = await generateReciept(session);
 
-  await sendMail(
-    session.customer_details.email,
-    ticketPdf,
-    //receiptPdf,
-    session
-  );
+  await sendMail(session.customer_details.email, ticketPdf, session);
 };
 
 export const config = { api: { bodyParser: false } };
