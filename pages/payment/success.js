@@ -8,7 +8,7 @@ const Success = () => {
   return (
     <div>
       <Head>
-        <title>Fright at the Mansion 2022</title>
+        <title>Fright at the Mansion 2023</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -25,7 +25,7 @@ const Success = () => {
           <div className="pt-12 text-lg">
             <p className="font-semibold text-2xl pb-4">Payment Succesful!</p>
             <p className="pb-6">
-              Thank you for your purchase of a Fright at the Mansion 2022 ticket
+              Thank you for your purchase of a Fright at the Mansion 2023 ticket
             </p>
 
             <p className="pb-20">

@@ -116,12 +116,12 @@ const FrightAtMansion = () => {
           {/** BASIC INFO*/}
           <div className="min-h-screen flex flex-col justify-between">
             {/** TOP */}
-            <div className="text-3xl p-4 pt-20 sm:p-20">
+            <div className="text-3xl p-4 pt-20 sm:px-20">
               <Image
                 priority
-                src="/images/header_rounded.png"
-                width={800}
-                height={270}
+                src="/images/header_main.png"
+                width={700}
+                height={600}
               />
             </div>
 
@@ -141,7 +141,7 @@ const FrightAtMansion = () => {
                 )}
                 <div>
                   <button
-                    className="bg-orange-500 w-min px-4 py-2 text-lg rounded-xl mt-4 font-bold"
+                    className="bg-red-700 w-min px-4 py-2 text-lg rounded-xl mt-4 font-bold"
                     onClick={checkValidCode}
                   >
                     {!loading ? "CONTINUE" : "LOADING..."}
@@ -172,25 +172,18 @@ const FrightAtMansion = () => {
           <div className="px-8 py-8">
             <div ref={bottom} />
             <p className="text-2xl font-bold list">
-              Fright at the Mansion 2022
+              Fright at the Mansion 2023
             </p>
             <div className="flex space-x-2 pt-2">
               <a
                 rel="noreferrer"
-                href="https://www.instagram.com/p/Cjn3Qy1J5gr/"
+                href="https://www.instagram.com/p/CyOkbdKJC17/"
                 target="_blank"
               >
                 <Image src="/images/logo-ig.png" width={20} height={20} />
               </a>
-
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href="https://www.facebook.com/events/764365438000886"
-              >
-                <Image src="/images/logo-fb.png" width={20} height={20} />
-              </a>
             </div>
+            {/**
             <p className="pt-4 font-bold text-xl">Dont have an access code? </p>
             <p>Reach out to any of the brothers below:</p>
             <ul className="list-disc pl-8">
@@ -242,28 +235,24 @@ const FrightAtMansion = () => {
                 </a>
               </li>
             </ul>
-            <p className="pt-8">
-              From the house that brought you Koachella, Bora Bora, Underground
-              and many other iconic events, we present to you - Fright at the
-              Mansion 🎃🎃
+
+             */}
+            <p className="pt-8">🎃BIG NEWS🎃</p>
+            <p className="pt-3">
+              🕸️Get ready for one of the biggest nights of the year! 👻The
+              Brothers of Kappa Sigma are excited to bring you Fright at the
+              Mansion on October 27th!
             </p>
             <p className="pt-3">
-              This Halloween, we’re pulling out all the stops to make it a night
-              full of thrills, chills, and fear - Make your way to the first
-              house on the left and enter through our haunted hallway (👻 patent
-              pending) to get to the party.
+              Featuring our famous haunted hallway 🕯️ and blackout neon decor,
+              your favourite house on campus is ready to run it back!🕺 🎉 🕷️
             </p>
             <p className="pt-3">
-              Then, enjoy an exhilarating night of music and fun on 2
-              simultaneous dance floors. Complete with smoke, lasers and special
-              guests.
+              Prepare for a spooky night with an unreal setup - and don’t forget
+              to bring a costume🦇
             </p>
-            <p className="pt-3">
-              Put on your best Halloween outfits, bring your homies and get
-              ready to have a spooktacular time - if you dare 👹
-            </p>
-            <p className="pt-3">PS: Yes it’s a real haunted hallway 👻👻👀</p>
-            <p className="pt-6">WHEN: Saturday, October 29th, 9:00pm.</p>
+            <p className="pt-3">🚨Guestlist Needed🚨</p>
+            <p className="pt-6">WHEN: Friday, October 27th, 9:00pm.</p>
             <p className="">
               WHERE: 2880 Westbrook Mall, First House on the Left
             </p>

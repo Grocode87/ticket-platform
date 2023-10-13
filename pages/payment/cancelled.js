@@ -8,7 +8,7 @@ const Cancelled = () => {
   return (
     <div>
       <Head>
-        <title>Fright at the Mansion 2022</title>
+        <title>Fright at the Mansion 2023</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

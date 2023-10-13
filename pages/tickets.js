@@ -7,21 +7,15 @@ const Tickets = ({ code, prices }) => {
   return (
     <div className="w-full min-h-screen bg-slate-900 text-white">
       <Head>
-        <title>Fright at the Mansion 2022</title>
+        <title>Fright at the Mansion 2023</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="w-full md:w-1/2 m-auto pt-10">
-        <div className="w-full sm:w-8/12 px-4 sm:px-0">
-          <Image
-            priority
-            src="/images/header_flat_basic.png"
-            width={800}
-            height={250}
-          />
-        </div>
-
-        <p className="text-3xl font-bold pt-14 text-center sm:text-left">
+        <p className="text-4xl font-bold pt-14 pb-4 text-center sm:text-left">
+          FRIGHT AT THE MANSION 2023
+        </p>
+        <p className="text-3xl font-semibold text-center sm:text-left">
           TICKETS
         </p>
 

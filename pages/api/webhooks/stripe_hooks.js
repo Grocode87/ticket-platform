@@ -136,11 +136,11 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
   const mailData = {
     from: "noreply@ksigubcevents.com",
     to: toEmail,
-    subject: `Order Confirmation/Ticket - Fright at the Mansion 2022`,
+    subject: `Order Confirmation/Ticket - Fright at the Mansion 2023`,
     text: `
      Hello ${session.metadata.name}},
  
-     Thank you for your purchase of a Fright at the Mansion 2022 ticket! \n
+     Thank you for your purchase of a Fright at the Mansion 2023 ticket! \n
  
      You can find your ticket attached. \n
  
@@ -167,7 +167,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
    <div id="gmail-:55r" class="gmail-Am gmail-Al editable gmail-LW-avf gmail-tS-tW gmail-tS-tY" style="direction: ltr; min-height: 590px;" tabindex="1" role="textbox" aria-label="Message Body" aria-multiline="true">Hello ${session.metadata.name}, 
      <br>
      <br>Thank you for your purchase of a 
-     <span class="LI ng" data-ddnwab="PR_1_0" aria-invalid="spelling">Fright at the Mansion</span> 2022 ticket! 
+     <span class="LI ng" data-ddnwab="PR_1_0" aria-invalid="spelling">Fright at the Mansion</span> 2023 ticket! 
      <br>
      <br>
      <strong>You can find your ticket attached.</strong> 
@@ -180,7 +180,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      <br>
      <br>
      <strong>Event Details:</strong> 
-     <br>9:00PM, Saturday, October 29th, 2022 
+     <br>9:00PM, Saturday, October 29th, 2023
      <br>2880 Wesbrook Mall, First House on the Left 
      <br>
      <br>
@@ -192,7 +192,7 @@ const sendMail = async (toEmail, ticketPdf, receiptPdf, session) => {
      <br>
      <br>
      <br>
-     <br>FRIGHT AT THE MANSION 2022
+     <br>FRIGHT AT THE MANSION 2023
      <br>PRESENTED BY KAPPA SIGMA
      <br>
      <br>
@@ -256,7 +256,7 @@ const fulfillPurchase = async (session) => {
   await sendMail(
     session.customer_details.email,
     ticketPdf,
-    receiptPdf,
+    //receiptPdf,
     session
   );
 };
