@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import CartProvider from "../context/cart";
 import "../styles/globals.css";
 import { pageview } from "../utils/ga";
+import { Analytics } from "@vercel/analytics/react";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -27,6 +28,7 @@ function MyApp({ Component, pageProps }) {
       <CartProvider>
         <Component {...pageProps} />
       </CartProvider>
+      <Analytics />
     </>
   );
 }
