@@ -11,6 +11,7 @@
   "dependencies": {
     "@stripe/stripe-js": "^1.24.0",
     "@supabase/supabase-js": "^1.30.7",
+    "@vercel/analytics": "^1.1.1",
     "axios": "^0.24.0",
     "base64-stream": "^1.0.0",
     "get-stream": "^6.0.1",
